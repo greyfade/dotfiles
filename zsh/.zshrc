@@ -113,4 +113,7 @@ zstyle ':vcs_info:*' disable bzr
 PERL_MB_OPT="--install_base \"/home/greywolf/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/greywolf/perl5"; export PERL_MM_OPT;
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]
+then
+	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
