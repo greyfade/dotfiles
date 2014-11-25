@@ -1,0 +1,21 @@
+[core]
+	editor = `which vim`
+[user]
+	name = Charles Banas
+	email = greyfade@gmail.com
+	signingkey = A940A299
+[credential]
+	helper = cache
+[alias]
+	up = !git fetch origin && git rebase origin/master
+	st = status -sb
+	stat = status
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative
+[color]
+	ui = true
+[push]
+	default = matching
+[color "diff"]
+	old = red bold
+	new = blue bold
+	meta = yellow bold
