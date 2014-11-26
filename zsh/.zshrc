@@ -46,6 +46,9 @@ plugins=(encode64 extract gem git gitfast git-extras github gpg-agent heroku his
 
 source $ZSH/oh-my-zsh.sh
 
+# GREP has deprecated it and complains constantly
+unset GREP_OPTIONS
+
 # Customize to your needs...
 
 # correct_all is stupid and whoever thought it was a good idea to set it is stupid.
@@ -92,7 +95,7 @@ export LESS_TERMCAP_us=$'\E[1;32m'    # begin underline
 alias ls="ls -F --color"
 alias ll="ls -l"
 alias la="ls -a"
-alias grep="grep --color"
+alias grep="grep --color --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn"
 
 alias engage="play -n -c1 synth whitenoise band -n 100 20 band -n 50 20 gain +25  fade h 1 864000 1"
 alias engage-high="play -c2 -n synth whitenoise band -n 100 24 band -n 300 100 gain +20"
