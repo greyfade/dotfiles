@@ -46,10 +46,19 @@ plugins=(encode64 extract gem git gitfast git-extras github gpg-agent heroku his
 
 source $ZSH/oh-my-zsh.sh
 
+# {{{ Aliases
+alias ls="ls -F --color"
+alias ll="ls -l"
+alias la="ls -a"
+alias grep="grep --color=auto ${GREP_OPTIONS}"
 # GREP has deprecated it and complains constantly
 unset GREP_OPTIONS
 
-# Customize to your needs...
+alias engage="play -n -c1 synth whitenoise band -n 100 20 band -n 50 20 gain +25  fade h 1 864000 1"
+alias engage-high="play -c2 -n synth whitenoise band -n 100 24 band -n 300 100 gain +20"
+
+alias astyle-c="astyle -t4 -L -m2 -f -p -U -k3 -W3 --brackets=stroustrup -j -O -xC80 -z2"
+# }}}
 
 # correct_all is stupid and whoever thought it was a good idea to set it is stupid.
 setopt correct nocorrect_all
@@ -89,18 +98,6 @@ export LESS_TERMCAP_se=$'\E[0m'       # end standout-mode
 export LESS_TERMCAP_so=$'\E[1;33;40m' # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'       # end underline
 export LESS_TERMCAP_us=$'\E[1;32m'    # begin underline
-# }}}
-
-# {{{ Aliases
-alias ls="ls -F --color"
-alias ll="ls -l"
-alias la="ls -a"
-alias grep="grep --color --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn"
-
-alias engage="play -n -c1 synth whitenoise band -n 100 20 band -n 50 20 gain +25  fade h 1 864000 1"
-alias engage-high="play -c2 -n synth whitenoise band -n 100 24 band -n 300 100 gain +20"
-
-alias astyle-c="astyle -t4 -L -m2 -f -p -U -k3 -W3 --brackets=stroustrup -j -O -xC80 -z2"
 # }}}
 
 autoload -Uz vcs_info
