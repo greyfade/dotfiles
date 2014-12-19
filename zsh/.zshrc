@@ -87,7 +87,7 @@ for xtool in $HOME/x-tools/*-*/bin
 do
 	export PATH="$PATH:${xtool}"
 done
-export PATH="/usr/lib/colorgcc/bin:${PATH}"
+#export PATH="/usr/lib/colorgcc/bin:${PATH}"
 
 # {{{ Manual pages
 #     - colorize, since man-db fails to do so
