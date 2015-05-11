@@ -28,8 +28,8 @@ set list listchars=tab:>-,trail:-
 set number
 
 " Convenience makes my fingers happy.
-map <F8> <ESC>:make<CR>
-imap <F8> <ESC>:make<CR>a
+map <F8> <ESC>:silent make\|cwindow\|redraw!<cr>
+imap <F8> <ESC>:silent make\|cwindow\|redraw!<cr>a
 " map <F12> <ESC>:cn<CR>
 nmap <leader>g :silent !grunt hogan coffee less<CR><C-L>
 
