@@ -86,10 +86,12 @@ export PATH="$PATH:/home/greywolf/.gem/ruby/2.0.0/bin:/home/greywolf/.gem/ruby/1
 if [ -f ~/.profile ]; then
 	source ~/.profile
 fi
-for xtool in $HOME/x-tools/*-*/bin
-do
-	export PATH="$PATH:${xtool}"
-done
+if [ -e ~/x-tools ]; then
+	for xtool in $HOME/x-tools/*-*/bin
+	do
+		export PATH="$PATH:${xtool}"
+	done
+fi
 #export PATH="/usr/lib/colorgcc/bin:${PATH}"
 
 # {{{ Manual pages
