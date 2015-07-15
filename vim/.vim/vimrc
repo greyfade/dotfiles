@@ -143,6 +143,8 @@ cmap w!! %!sudo tee > /dev/null %
 " Also, loads bundled scripts and plug-ins.
 call pathogen#infect()
 
+au BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window 'vim | " . expand("%:t") . "'")
+
 au BufNewFile,BufRead *.cpp set syntax=cpp11
 au BufNewFile,BufRead *.hpp set syntax=cpp11
 au BufNewFile,BufRead *.mustache set ft=html
