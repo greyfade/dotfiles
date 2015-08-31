@@ -139,9 +139,25 @@ let g:proj_flags='imstS'
 " I often forget to use sudoedit. Much to my chagrin.
 cmap w!! %!sudo tee > /dev/null %
 
-" Keeps my immune system in tip-top shape.
-" Also, loads bundled scripts and plug-ins.
-call pathogen#infect()
+call plug#begin('~/.vim/plugged')
+
+Plug 'kien/ctrlp.vim'
+Plug 'vim-scripts/ctx'
+
+Plug 'kien/rainbow_parentheses.vim'
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+Plug 'jaxbot/semantic-highlight.vim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'altercation/vim-colors-solarized'
+Plug 'shemerey/vim-project'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdtree'
+
+call plug#end()
 
 au BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window 'vim | " . expand("%:t") . "'")
 
@@ -153,7 +169,3 @@ let g:coffee_compiler = "/usr/bin/coffee"
 let g:coffee_make_options = ""
 au BufNewFile,BufRead *.coffee let b:coffee_litcoffee=""
 
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
