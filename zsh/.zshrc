@@ -39,7 +39,7 @@ URLTOOLS_METHOD="python"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(encode64 extract gem git gitfast git-extras github gpg-agent heroku history history-substring-search rsync ruby screen python ssh-agent systemd archlinux urltools zsh-syntax-highlighting)
+plugins=(encode64 extract gem git gitfast git-extras github gpg-agent heroku history history-substring-search rsync ruby screen python ssh-agent systemd archlinux urltools zsh-syntax-highlighting per-directory-history)
 # command-not-found
 # themes
 # vi-mode
@@ -50,7 +50,9 @@ source $ZSH/oh-my-zsh.sh
 alias ls="ls -F --color"
 alias ll="ls -l"
 alias la="ls -a"
+alias lsr="ls -lSr"
 alias grep="grep --color=auto ${GREP_OPTIONS}"
+alias mv="mv -i"
 # GREP has deprecated it and complains constantly
 unset GREP_OPTIONS
 
