@@ -69,7 +69,7 @@ set smartcase
 set shortmess=atI
 
 " Everything else looks like crap.
-colorscheme Tomorrow-Night-Bright
+"colorscheme Tomorrow-Night-Bright
 
 " I hate python.
 autocmd filetype python set expandtab
@@ -142,22 +142,22 @@ cmap w!! %!sudo tee > /dev/null %
 call plug#begin('~/.vim/plugged')
 
 Plug 'kien/ctrlp.vim'
-Plug 'vim-scripts/ctx'
-
+" Plug 'vim-scripts/ctx'
 Plug 'kien/rainbow_parentheses.vim'
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-
 Plug 'jaxbot/semantic-highlight.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'altercation/vim-colors-solarized'
 Plug 'shemerey/vim-project'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 
 call plug#end()
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 au BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window 'vim | " . expand("%:t") . "'")
 
