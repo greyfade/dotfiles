@@ -141,7 +141,7 @@ cmap w!! %!sudo tee > /dev/null %
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'vim-scripts/ctx'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'jaxbot/semantic-highlight.vim'
