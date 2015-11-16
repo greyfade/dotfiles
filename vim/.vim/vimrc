@@ -1,6 +1,8 @@
 " Light backgrounds hurt my eyes.
 set background=dark
 
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1 " True gui colors in terminal
+
 " I speel gud, but I mkae tyops all the tiem.
 set spell spelllang=en_us
 
