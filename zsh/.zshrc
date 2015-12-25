@@ -80,8 +80,7 @@ export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 
 export BROWSER="chromium"
-export EDITOR="vim"
-#export PAGER="/usr/bin/vimpager"
+export EDITOR="nvim"
 export PAGER="/usr/bin/less"
 export MANPAGER="/usr/bin/less"
 
