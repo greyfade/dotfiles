@@ -47,12 +47,15 @@ plugins=(encode64 extract gem git gitfast git-extras github gpg-agent heroku his
 source $ZSH/oh-my-zsh.sh
 
 # {{{ Aliases
-alias ls="ls -F --color"
+alias ls="ls -F --color=always"
 alias ll="ls -l"
 alias la="ls -a"
 alias lsr="ls -lSr"
-alias grep="grep --color=auto ${GREP_OPTIONS}"
+alias grep="grep --color=always ${GREP_OPTIONS}"
 alias mv="mv -i"
+
+export LESS='-R'
+
 # GREP has deprecated it and complains constantly
 unset GREP_OPTIONS
 
@@ -116,6 +119,17 @@ zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{11}%r'
 zstyle ':vcs_info:*' enable git svn cvs darcs hg
 zstyle ':vcs_info:*' disable bzr
 
+# Get local weather and present it nicely
+weather() {
+  # We require 'curl' so check for it
+  if ! command -v curl &>/dev/null; then
+    printf "%s\n" "[ERROR] weather: This command requires 'curl', please install it."
+    return 1
+  fi
+
+  # If no arg is given, default to Bellingham, WA
+  curl -m 10 "http://wttr.in/${*:-Bellingham,+WA}" 2>/dev/null || printf "%s\n" "[ERROR] weather: Could not connect to weather service."
+}
 
 PERL_MB_OPT="--install_base \"/home/greywolf/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/greywolf/perl5"; export PERL_MM_OPT;
