@@ -78,6 +78,7 @@ autocmd filetype python set expandtab
 autocmd filetype php set expandtab
 autocmd filetype coffee set expandtab
 autocmd filetype mustache set expandtab
+autocmd filetype pony set expandtab
 
 " NERDtree crap
 " autocmd vimenter * NERDTree
@@ -143,6 +144,7 @@ cmap w!! %!sudo tee > /dev/null %
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'dleonard0/pony-vim-syntax'
 Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'vim-scripts/ctx'
 Plug 'kien/rainbow_parentheses.vim'
