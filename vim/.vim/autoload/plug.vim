@@ -134,7 +134,7 @@ function! plug#begin(...)
 endfunction
 
 function! s:define_commands()
-  command! -nargs=+ -bar Plug call plug#(<args>)
+  command! -nargs=+ -bar Plug call s:Plug(<args>)
   if !executable('git')
     return s:err('`git` executable not found. Most commands will not be available. To suppress this message, prepend `silent!` to `call plug#begin(...)`.')
   endif
@@ -486,7 +486,7 @@ function! s:lod_map(map, names, prefix)
   call feedkeys(a:prefix . substitute(a:map, '^<Plug>', "\<Plug>", '') . extra)
 endfunction
 
-function! plug#(repo, ...)
+function! s:Plug(repo, ...)
   if a:0 > 1
     return s:err('Invalid number of arguments (1..2)')
   endif
@@ -574,12 +574,14 @@ function! s:syntax()
   syn match plugStar /^*/
   syn match plugMessage /\(^- \)\@<=.*/
   syn match plugName /\(^- \)\@<=[^ ]*:/
-  syn match plugSha /\%(: \)\@<=[0-9a-z]\{4,}$/
+  syn match plugSha /\%(: \)\@<=[0-9a-f]\{4,}$/
   syn match plugTag /(tag: [^)]\+)/
   syn match plugInstall /\(^+ \)\@<=[^:]*/
   syn match plugUpdate /\(^* \)\@<=[^:]*/
-  syn match plugCommit /^  [0-9a-z]\{7} .*/ contains=plugRelDate,plugSha,plugTag
-  syn match plugSha /\(^  \)\@<=[0-9a-z]\{7}/ contained
+  syn match plugCommit /^  \X*[0-9a-f]\{7} .*/ contains=plugRelDate,plugEdge,plugTag
+  syn match plugEdge /^  \X\+$/
+  syn match plugEdge /^  \X*/ contained nextgroup=plugSha
+  syn match plugSha /[0-9a-f]\{7}/ contained
   syn match plugRelDate /([^)]*)$/ contained
   syn match plugNotLoaded /(not loaded)$/
   syn match plugError /^x.*/
@@ -665,7 +667,7 @@ function! s:switch_out(...)
 endfunction
 
 function! s:finish_bindings()
-  nnoremap <silent> <buffer> R  :call <SID>retry()<cr>
+  nnoremap <silent> <buffer> R  :silent! call <SID>retry()<cr>
   nnoremap <silent> <buffer> D  :PlugDiff<cr>
   nnoremap <silent> <buffer> S  :PlugStatus<cr>
   nnoremap <silent> <buffer> U  :call <SID>status_update()<cr>
@@ -681,21 +683,13 @@ function! s:prepare(...)
 
   call s:job_abort()
   if s:switch_in()
-    silent %d _
-  else
-    call s:new_window()
-    nnoremap <silent> <buffer> q  :if b:plug_preview==1<bar>pc<bar>endif<bar>bd<cr>
-    nnoremap <silent> <buffer> R  :silent! call <SID>retry()<cr>
-    nnoremap <silent> <buffer> D  :PlugDiff<cr>
-    nnoremap <silent> <buffer> S  :PlugStatus<cr>
-    nnoremap <silent> <buffer> U  :call <SID>status_update()<cr>
-    xnoremap <silent> <buffer> U  :call <SID>status_update()<cr>
-    nnoremap <silent> <buffer> ]] :silent! call <SID>section('')<cr>
-    nnoremap <silent> <buffer> [[ :silent! call <SID>section('b')<cr>
-    let b:plug_preview = -1
-    let s:plug_tab = tabpagenr()
-    let s:plug_buf = winbufnr(0)
-    call s:assign_name()
+    normal q
+  endif
+
+  call s:new_window()
+  nnoremap <silent> <buffer> q  :if b:plug_preview==1<bar>pc<bar>endif<bar>bd<cr>
+  if a:0 == 0
+    call s:finish_bindings()
   endif
   let b:plug_preview = -1
   let s:plug_tab = tabpagenr()
@@ -754,24 +748,14 @@ function! s:do(pull, force, todo)
     endif
     let installed = has_key(s:update.new, name)
     let updated = installed ? 0 :
-      \ (a:pull && index(s:update.errors, name) < 0 && !empty(s:system_chomp('git log --pretty=format:"%h" "HEAD...HEAD@{1}"', spec.dir)))
+      \ (a:pull && index(s:update.errors, name) < 0 && s:is_updated(spec.dir))
     if a:force || installed || updated
       execute 'cd' s:esc(spec.dir)
       call append(3, '- Post-update hook for '. name .' ... ')
       let error = ''
       let type = type(spec.do)
       if type == s:TYPE.string
-        try
-          " FIXME: Escaping is incomplete. We could use shellescape with eval,
-          "        but it won't work on Windows.
-          let g:_plug_do = '!'.escape(spec.do, '#!%')
-          execute "normal! :execute g:_plug_do\<cr>\<cr>"
-        finally
-          if v:shell_error
-            let error = 'Exit status: ' . v:shell_error
-          endif
-          unlet g:_plug_do
-        endtry
+        let error = s:bang(spec.do)
       elseif type == s:TYPE.funcref
         try
           let status = installed ? 'installed' : (updated ? 'updated' : 'unchanged')
@@ -784,6 +768,10 @@ function! s:do(pull, force, todo)
       endif
       call setline(4, empty(error) ? (getline(4) . 'OK')
                                  \ : ('x' . getline(4)[1:] . error))
+      if !empty(error)
+        call add(s:update.errors, name)
+        call s:regress_bar()
+      endif
       cd -
     endif
   endfor
@@ -793,32 +781,14 @@ function! s:hash_match(a, b)
   return stridx(a:a, a:b) == 0 || stridx(a:b, a:a) == 0
 endfunction
 
-function! s:checkout(plugs)
-  for [name, spec] in items(a:plugs)
-    let sha = spec.commit
-    call append(3, '- Checking out '.sha[:6].' of '.name.' ... ')
-    redraw
-
-    let error = []
-    let output = s:lines(s:system('git rev-parse HEAD', spec.dir))
-    if v:shell_error
-      let error = output
-    elseif !s:hash_match(sha, output[0])
-      let output = s:lines(s:system(
-            \ 'git fetch --depth 999999 && git checkout '.sha, spec.dir))
-      if v:shell_error
-        let error = output
-      endif
-    endif
-    if empty(error)
-      call setline(4, getline(4) . 'OK')
-    else
-      call setline(4, 'x'.getline(4)[1:] . 'Error')
-      for line in reverse(error)
-        call append(4, '    '.line)
-      endfor
-    endif
-  endfor
+function! s:checkout(spec)
+  let sha = a:spec.commit
+  let output = s:system('git rev-parse HEAD', a:spec.dir)
+  if !v:shell_error && !s:hash_match(sha, s:lines(output)[0])
+    let output = s:system(
+          \ 'git fetch --depth 999999 && git checkout '.s:esc(sha), a:spec.dir)
+  endif
+  return output
 endfunction
 
 function! s:finish(pull)
@@ -986,8 +956,42 @@ function! s:update_finish()
     let $GIT_TERMINAL_PROMPT = s:git_terminal_prompt
   endif
   if s:switch_in()
-    call s:checkout(filter(copy(s:update.all), 'has_key(v:val, "commit")'))
-    call s:do(s:update.pull, s:update.force, filter(copy(s:update.all), 'has_key(v:val, "do")'))
+    call append(3, '- Updating ...') | 4
+    for [name, spec] in items(filter(copy(s:update.all), 'index(s:update.errors, v:key) < 0 && (s:update.pull || has_key(s:update.new, v:key))'))
+      let pos = s:logpos(name)
+      if !pos
+        continue
+      endif
+      if has_key(spec, 'commit')
+        call s:log4(name, 'Checking out '.spec.commit)
+        let out = s:checkout(spec)
+      elseif has_key(spec, 'tag')
+        call s:log4(name, 'Checking out '.spec.tag)
+        let out = s:system('git checkout -q '.s:esc(spec.tag).' 2>&1', spec.dir)
+      else
+        let branch = s:esc(get(spec, 'branch', 'master'))
+        call s:log4(name, 'Merging origin/'.branch)
+        let out = s:system('git checkout -q '.branch.' 2>&1'
+              \. (has_key(s:update.new, name) ? '' : ('&& git merge --ff-only origin/'.branch.' 2>&1')), spec.dir)
+      endif
+      if !v:shell_error && filereadable(spec.dir.'/.gitmodules') &&
+            \ (has_key(s:update.new, name) || s:is_updated(spec.dir))
+        call s:log4(name, 'Updating submodules. This may take a while.')
+        let out .= s:bang('git submodule update --init --recursive 2>&1', spec.dir)
+      endif
+      let msg = printf('%s %s: %s', v:shell_error ? 'x': '-', name, get(s:lines(out), -1, ''))
+      if v:shell_error
+        call add(s:update.errors, name)
+        call s:regress_bar()
+        execute pos 'd _'
+        call append(4, msg) | 4
+      elseif !empty(out)
+        call setline(pos, msg)
+      endif
+      redraw
+    endfor
+    4 d _
+    call s:do(s:update.pull, s:update.force, filter(copy(s:update.all), 'index(s:update.errors, v:key) < 0 && has_key(v:val, "do")'))
     call s:finish(s:update.pull)
     call setline(1, 'Updated. Elapsed time: ' . split(reltimestr(reltime(s:update.start)))[0] . ' sec.')
     call s:switch_out('normal! gg')
@@ -1424,9 +1428,9 @@ class Plugin(object):
 
     self.write(Action.INSTALL, self.name, ['Installing ...'])
     callback = functools.partial(self.write, Action.INSTALL, self.name)
-    cmd = 'git clone {0} {1} --recursive {2} -b {3} {4} 2>&1'.format(
+    cmd = 'git clone {0} {1} {2} {3} 2>&1'.format(
           '' if self.tag else G_CLONE_OPT, G_PROGRESS, self.args['uri'],
-          self.checkout, esc(target))
+          esc(target))
     com = Command(cmd, None, G_TIMEOUT, callback, clean(target))
     result = com.execute(G_RETRIES)
     self.write(Action.DONE, self.name, result[-1:])
@@ -1452,11 +1456,7 @@ class Plugin(object):
       self.write(Action.UPDATE, self.name, ['Updating ...'])
       callback = functools.partial(self.write, Action.UPDATE, self.name)
       fetch_opt = '--depth 99999999' if self.tag and os.path.isfile(os.path.join(self.args['dir'], '.git/shallow')) else ''
-      cmds = ['git fetch {0} {1}'.format(fetch_opt, G_PROGRESS),
-              'git checkout -q {0}'.format(self.checkout),
-              'git merge --ff-only {0}'.format(self.merge),
-              'git submodule update --init --recursive']
-      cmd = ' 2>&1 && '.join(cmds)
+      cmd = 'git fetch {0} {1} 2>&1'.format(fetch_opt, G_PROGRESS)
       com = Command(cmd, self.args['dir'], G_TIMEOUT, callback)
       result = com.execute(G_RETRIES)
       self.write(Action.DONE, self.name, result[-1:])
@@ -1753,7 +1753,7 @@ function! s:update_ruby()
                 if pull
                   log.call name, 'Updating ...', :update
                   fetch_opt = (tag && File.exist?(File.join(dir, '.git/shallow'))) ? '--depth 99999999' : ''
-                  bt.call "#{chdir} && git fetch #{fetch_opt} #{progress} 2>&1 && git checkout -q #{checkout} 2>&1 && git merge --ff-only #{merge} 2>&1 && #{subm}", name, :update, nil
+                  bt.call "#{chdir} && git fetch #{fetch_opt} #{progress} 2>&1", name, :update, nil
                 else
                   [true, skip]
                 end
@@ -2095,10 +2095,15 @@ function! s:section(flags)
 endfunction
 
 function! s:format_git_log(line)
-  let [sha, refs, subject, date] = split(a:line, nr2char(1))
+  let indent = '  '
+  let tokens = split(a:line, nr2char(1))
+  if len(tokens) != 5
+    return indent.substitute(a:line, '\s*$', '', '')
+  endif
+  let [graph, sha, refs, subject, date] = tokens
   let tag = matchstr(refs, 'tag: [^,)]\+')
   let tag = empty(tag) ? ' ' : ' ('.tag.') '
-  return printf('  %s%s%s (%s)', sha, tag, subject, date)
+  return printf('%s%s%s%s%s (%s)', indent, graph, sha, tag, subject, date)
 endfunction
 
 function! s:append_ul(lnum, text)
@@ -2113,10 +2118,14 @@ function! s:diff()
   let total = filter(copy(g:plugs), 's:is_managed(v:key) && isdirectory(v:val.dir)')
   call s:progress_bar(2, bar, len(total))
   for origin in [1, 0]
+    let plugs = reverse(sort(items(filter(copy(total), (origin ? '' : '!').'(has_key(v:val, "commit") || has_key(v:val, "tag"))'))))
+    if empty(plugs)
+      continue
+    endif
     call s:append_ul(2, origin ? 'Pending updates:' : 'Last update:')
-    for [k, v] in reverse(sort(items(filter(copy(total), (origin ? '' : '!').'(has_key(v:val, "commit") || has_key(v:val, "tag"))'))))
+    for [k, v] in plugs
       let range = origin ? '..origin/'.v.branch : 'HEAD@{1}..'
-      let diff = s:system_chomp('git log --pretty=format:"%h%x01%d%x01%s%x01%cr" '.s:shellesc(range), v.dir)
+      let diff = s:system_chomp('git log --graph --color=never --pretty=format:"%x01%h%x01%d%x01%s%x01%cr" '.s:shellesc(range), v.dir)
       if !empty(diff)
         let ref = has_key(v, 'tag') ? (' (tag: '.v.tag.')') : has_key(v, 'commit') ? (' '.v.commit) : ''
         call append(5, extend(['', '- '.k.':'.ref], map(s:lines(diff), 's:format_git_log(v:val)')))

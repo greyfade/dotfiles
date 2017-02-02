@@ -75,6 +75,7 @@ set shortmess=atI
 
 " I hate python.
 autocmd filetype python set expandtab
+autocmd filetype pony set expandtab
 autocmd filetype php set expandtab
 autocmd filetype coffee set expandtab
 autocmd filetype mustache set expandtab
@@ -114,7 +115,36 @@ if has("cscope")
 		cs add $CSCOPE_DB
 	endif
 	set csverb
+
+	nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+	nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+	nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+	nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+	nmap <C-@>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+	nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>
+
+	nmap <C-@><C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@><C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@><C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@><C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@><C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
+	nmap <C-@><C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+	nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 endif
+
+set tags=./tags,tags
 
 let ComniCpp_MayCompleteDot=1
 let ComniCpp_MayCompleteArrow=1
@@ -144,7 +174,9 @@ cmap w!! %!sudo tee > /dev/null %
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'jceb/vim-orgmode'
 Plug 'dleonard0/pony-vim-syntax'
+Plug 'Rip-Rip/clang_complete', { 'for': ['cpp', 'cpp11', 'c'], 'do': 'make install' }
 Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'vim-scripts/ctx'
 Plug 'kien/rainbow_parentheses.vim'
@@ -155,8 +187,13 @@ Plug 'shemerey/vim-project'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'vim-latex/vim-latex'
+
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
+
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'path_html': '~/public_html/'}]
 
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
