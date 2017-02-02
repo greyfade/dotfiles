@@ -33,12 +33,38 @@ values."
    '(
      helm
      auto-completion
+     semantic
+     ;eyebrowse
      better-defaults
      emacs-lisp
      git
      markdown
      org
-
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
+     spell-checking
+     syntax-checking
+     (version-control :variables
+                      version-control-global-margin t)
+     cscope
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-clang-support t)
+     common-lisp
+     csharp
+     d
+     erlang
+     go
+     haskell
+     html
+     (latex :variables
+            latex-build-command "LaTeX"
+            latex-enable-folding t
+            latex-enable-auto-fill t)
+     ;javascript
+     lua
+     ocaml
      python
      racket
      ruby
@@ -48,22 +74,11 @@ values."
      shell-scripts
      sql
      yaml
-     ;; Other
-     org
-     semantic
-     (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
-     spell-checking
-     syntax-checking
-     ;; Source control
-     git
-     version-control
-     ;; Tools
+     fsharp
+     django
      command-log
      tmux
      ;; Window management
-     ;eyebrowse
 
      ;; other
      gnus
@@ -77,6 +92,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
      ponylang-mode
+     zeal-at-point
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -347,6 +363,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+  (global-set-key "\C-cd" 'zeal-at-point)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -364,7 +381,7 @@ you should place your code here."
  '(python-check-command "pyflakes-python2")
  '(python-shell-extra-pythonpaths (quote ("/home/greywolf/zubie/Src/CoreEngine/host")))
  '(python-shell-interpreter "ipython2")
- '(safe-local-variable-values (quote ((python-shell-interpreter . /usr/bin/ipython2)))))
+ '(safe-local-variable-values (quote ())))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
