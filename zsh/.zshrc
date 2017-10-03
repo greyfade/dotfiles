@@ -54,6 +54,8 @@ alias lsr="ls -lSr"
 alias grep="grep --color=always ${GREP_OPTIONS}"
 alias mv="mv -i"
 
+alias ':q'='exit'
+
 export LESS='-R'
 
 # GREP has deprecated it and complains constantly
