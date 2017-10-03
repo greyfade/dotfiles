@@ -19,3 +19,5 @@
 	old = red bold
 	new = blue bold
 	meta = yellow bold
+[merge]
+	tool = vimdiff
