@@ -73,7 +73,8 @@ set shortmess=atI
 " Everything else looks like crap.
 "colorscheme Tomorrow-Night-Bright
 
-" I hate python.
+set expandtab
+
 autocmd filetype python set expandtab
 autocmd filetype pony set expandtab
 autocmd filetype php set expandtab
