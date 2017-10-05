@@ -155,3 +155,8 @@ bar {
     status_command i3status
     tray_output primary
 }
+
+exec --no-startup-id "xinput set-prop $(xinput list | grep TouchPad | sed -re 's/.*id=([0-9]+).*/\1/') 280 1"
+
+exec --no-startup-id "twmnd default"
+exec --no-startup-id dropbox
