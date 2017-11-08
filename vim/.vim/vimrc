@@ -29,6 +29,16 @@ set list listchars=tab:>-,trail:-
 " I can't count.
 set number
 
+" Fold settings {{{
+set foldenable
+set foldclose=all " Close folds if you leave them in any way
+set foldcolumn=1 " Show the foldcolumn
+set foldlevel=0 " Autofold everything by default
+set foldmethod=syntax " Fold on the syntax
+set foldnestmax=2
+set foldopen=all " Open folds if you touch them in any way
+" }}}
+
 " Convenience makes my fingers happy.
 map <F8> <ESC>:silent make\|cwindow\|redraw!<cr>
 imap <F8> <ESC>:silent make\|cwindow\|redraw!<cr>a
