@@ -183,6 +183,7 @@ let g:proj_flags='imstS'
 " I often forget to use sudoedit. Much to my chagrin.
 cmap w!! %!sudo tee > /dev/null %
 
+" note:  run :PlugUpgrade | PlugInstall | PlugUpdate
 call plug#begin('~/.vim/plugged')
 
 Plug 'jceb/vim-orgmode'
