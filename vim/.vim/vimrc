@@ -196,7 +196,6 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'altercation/vim-colors-solarized'
 Plug 'shemerey/vim-project'
 Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdtree'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'vim-latex/vim-latex'
 
