@@ -90,7 +90,7 @@ export SQUEAK_IMAGE=$HOME/.squeak/squeak.image
 
 export GOPATH=$HOME/gocode
 
-export PATH="$PATH:~/.cabal/bin:~/gocode/bin:~/.gem/ruby/2.0.0/bin:~/.gem/ruby/1.8/bin:~/bin"
+export PATH="$PATH:~/.local/bin:~/.cabal/bin:~/gocode/bin:~/.gem/ruby/2.0.0/bin:~/.gem/ruby/1.8/bin:~/bin"
 if [ -f ~/.profile ]; then
 	source ~/.profile
 fi
