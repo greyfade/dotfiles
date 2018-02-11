@@ -21,6 +21,10 @@ filetype plugin on
 filetype indent on
 
 set grepprg=grep\ -nH\ $*
+if filereadable("/usr/bin/rg")
+	set grepprg=rg\ --vimgrep
+	set grepformat^=%f:%l:%c:%m
+endif
 let g:tex_flavor = "latex"
 
 " 4-column tabs is the One True Way.
