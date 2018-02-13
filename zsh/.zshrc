@@ -88,9 +88,9 @@ export MANPAGER="/usr/bin/less"
 
 export SQUEAK_IMAGE=$HOME/.squeak/squeak.image
 
-export GOPATH=$HOME/gocode
+export GOPATH=$HOME/.local/gocode
 
-export PATH="$PATH:$HOME/.local/bin:$HOME/.cabal/bin:$HOME/gocode/bin:$HOME/.gem/ruby/2.0.0/bin:$HOME/.gem/ruby/1.8/bin:$HOME/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.cabal/bin:$HOME/gocode/bin:$HOME/.gem/ruby/2.0.0/bin:$HOME/.gem/ruby/1.8/bin"
 if [ -f ~/.profile ]; then
 	source ~/.profile
 fi
