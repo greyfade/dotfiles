@@ -90,12 +90,12 @@ export SQUEAK_IMAGE=$HOME/.squeak/squeak.image
 
 export GOPATH=$HOME/.local/gocode
 
-export PATH="$PATH:$HOME/.local/bin:$HOME/.cabal/bin:$HOME/gocode/bin:$HOME/.gem/ruby/2.0.0/bin:$HOME/.gem/ruby/1.8/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.local/gocode/bin"
 if [ -f ~/.profile ]; then
 	source ~/.profile
 fi
-if [ -e ~/x-tools ]; then
-	for xtool in $HOME/x-tools/*-*/bin
+if [ -e ~/.local/share/x-tools ]; then
+	for xtool in $HOME/.local/share/x-tools/*-*/bin
 	do
 		export PATH="$PATH:${xtool}"
 	done
