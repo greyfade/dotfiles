@@ -11,6 +11,7 @@
 	st = status -sb
 	stat = status
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative
+	co = checkout
 [color]
 	ui = true
 [push]
@@ -21,3 +22,7 @@
 	meta = yellow bold
 [merge]
 	tool = vimdiff
+[fetch]
+	recurseSubmodules = true
+[pull]
+	rebase = true
