@@ -368,6 +368,14 @@ you should place your code here."
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   (global-set-key "\C-cd" 'zeal-at-point)
 
+  (add-hook 'c-mode-hook
+            (lambda ()
+              (setq flycheck-clang-language-standard "c11")
+              (setq flycheck-gcc-language-standard "c11")))
+  (add-hook 'c++-mode-hook
+            (lambda ()
+              (setq flycheck-clang-language-standard "c++14")
+              (setq flycheck-gcc-language-standard "c++14")))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -380,11 +388,9 @@ you should place your code here."
  '(LaTeX-command "xelatex")
  '(TeX-PDF-via-dvips-ps2pdf t)
  '(TeX-command "xetex")
- '(flycheck-clang-args nil)
- '(flycheck-clang-language-standard "c++14")
- '(flycheck-gcc-language-standard "c++14")
  '(flycheck-python-pycompile-executable "python2")
  '(flycheck-python-pylint-executable "pylint2")
+ '(flycheck-standard-error-navigation nil)
  '(latex-run-command "xelatex")
  '(package-selected-packages
    (quote
