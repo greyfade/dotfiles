@@ -6,85 +6,27 @@ then
 	git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 fi
 
-ZSH_THEME="xiong-chiamiov-plus"
-
-# PROMPT=$'%{\e[0;34m%}%B┌─[%b%{\e[0m%}%{\e[1;32m%}%n%{\e[1;30m%}@%{\e[0m%}%{\e[0;36m%}%m%{\e[0;34m%}%B]%b%{\e[0m%} - %b%{\e[0;34m%}%B[%b%{\e[1;37m%}%~%{\e[0;34m%}%B]%b%{\e[0m%} - %{\e[0;34m%}%B[%b%{\e[0;33m%}'%D{"%a %b %d, %H:%M"}%b$'%{\e[0;34m%}%B]%b%{\e[0m%}
-# %{\e[0;34m%}%B└─%B[%{\e[1;35m%}$%{\e[0;34m%}%B] <$(git_prompt_info)>%{\e[0m%}%b '
-# PS2=$' \e[0;34m%}%B>%{\e[0m%}%b '
-
-URLTOOLS_METHOD="python"
-
 plugins=(encode64 extract gem git gitfast git-extras github gpg-agent heroku history history-substring-search rsync ruby screen python ssh-agent systemd archlinux urltools zsh-syntax-highlighting per-directory-history)
 # vi-mode
 
+source $HOME/.sh_colorize
+
 source $ZSH/oh-my-zsh.sh
 
-# {{{ Aliases
-alias ls="ls -F --color=always"
-alias ll="ls -l"
-alias la="ls -a"
-alias lsr="ls -lSr"
-alias grep="grep --color=always ${GREP_OPTIONS}"
-alias mv="mv -i"
-
-alias ':q'='exit'
-
-export LESS='-R'
-
-# GREP has deprecated it and complains constantly
-unset GREP_OPTIONS
-
-alias engage="play -n -c1 synth whitenoise band -n 100 20 band -n 50 20 gain +25  fade h 1 864000 1"
-alias engage-high="play -c2 -n synth whitenoise band -n 100 24 band -n 300 100 gain +20"
-
-alias astyle-c="astyle -t4 -L -m2 -f -p -U -k3 -W3 --brackets=stroustrup -j -O -xC80 -z2"
-# }}}
+source $HOME/.sh_aliases
+source $HOME/.sh_paths
 
 # correct_all is stupid and whoever thought it was a good idea to set it is stupid.
 setopt correct nocorrect_all
 
-
-HISTFILE=~/.histfile
 HISTSIZE=30000
 SAVEHIST=100000
 setopt appendhistory extendedglob notify hist_ignore_dups extendedhistory
 bindkey '[3~' delete-char
 
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
-
-export BROWSER="chromium"
-export EDITOR="nvim"
-export PAGER="/usr/bin/less"
-export MANPAGER="/usr/bin/less"
-
-export SQUEAK_IMAGE=$HOME/.squeak/squeak.image
-
-export GOPATH=$HOME/.local/gocode
-
-export PATH="$PATH:$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.local/gocode/bin"
 if [ -f ~/.profile ]; then
 	source ~/.profile
 fi
-if [ -e ~/.local/share/x-tools ]; then
-	for xtool in $HOME/.local/share/x-tools/*-*/bin
-	do
-		export PATH="$PATH:${xtool}"
-	done
-fi
-#export PATH="/usr/lib/colorgcc/bin:${PATH}"
-
-# {{{ Manual pages
-#     - colorize, since man-db fails to do so
-export LESS_TERMCAP_mb=$'\E[01;31m'   # begin blinking
-export LESS_TERMCAP_md=$'\E[01;31m'   # begin bold
-export LESS_TERMCAP_me=$'\E[0m'       # end mode
-export LESS_TERMCAP_se=$'\E[0m'       # end standout-mode
-export LESS_TERMCAP_so=$'\E[1;33;40m' # begin standout-mode - info box
-export LESS_TERMCAP_ue=$'\E[0m'       # end underline
-export LESS_TERMCAP_us=$'\E[1;32m'    # begin underline
-# }}}
 
 autoload -Uz vcs_info
 
@@ -106,6 +48,8 @@ weather() {
   # If no arg is given, default to Bellingham, WA
   curl -m 10 "http://wttr.in/${*:-Bellingham,+WA}" 2>/dev/null || printf "%s\n" "[ERROR] weather: Could not connect to weather service."
 }
+
+# eval `ssh-agent -s`
 
 if [ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]
 then

@@ -1,0 +1,17 @@
+# {{{ Aliases
+alias ls="ls -F --color=always"
+alias ll="ls -l"
+alias la="ls -a"
+alias lsr="ls -lSr"
+alias grep="grep --color=always ${GREP_OPTIONS}"
+alias mv="mv -i"
+
+alias ':q'='exit'
+
+alias engage="play -n -c1 synth whitenoise band -n 100 20 band -n 50 20 gain +25  fade h 1 864000 1"
+alias engage-high="play -c2 -n synth whitenoise band -n 100 24 band -n 300 100 gain +20"
+
+alias astyle-c="astyle -t4 -L -m2 -f -p -U -k3 -W3 --brackets=stroustrup -j -O -xC80 -z2"
+# }}}
+
+# vim ft=zsh
