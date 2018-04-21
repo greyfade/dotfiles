@@ -194,16 +194,62 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'vim-scripts/ctx'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'jaxbot/semantic-highlight.vim'
-Plug 'kchmck/vim-coffee-script'
 Plug 'altercation/vim-colors-solarized'
 Plug 'shemerey/vim-project'
 Plug 'tpope/vim-surround'
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'vim-latex/vim-latex'
+
+Plug 'w0rp/ale'
 
 Plug 'vimwiki/vimwiki'
 
+if has('nvim')
+    Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': 'bash install.sh',
+        \ }
+else
+    Plug 'natebosch/vim-lsc'
+endif
+
 call plug#end()
+
+if has('nvim')
+    let g:LanguageClient_serverCommands = {
+                \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+                \ 'javascript': ['javascript-typescript-stdio'],
+                \ 'javascript.jsx': ['javascript-typescript-stdio'],
+                \ 'd': ['serve-d'],
+                \ 'cpp': ['/usr/bin/cquery', '--log-file=/tmp/cq.log', '--init', '{ "cacheDirectory": "/tmp/cquery" }'],
+                \ 'c': ['/usr/bin/cquery', '--log-file=/tmp/cq.log', '--init', '{ "cacheDirectory": "/tmp/cquery" }']
+                \ }
+    let g:LanguageClient_loadSettings = 1
+    " Use an absolute configuration path if you want system-wide settings
+    let g:LanguageClient_settingsPath = '~/.vim/settings.json'
+
+
+    " nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+    nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+    " nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+else
+    let g:lsc_server_commands = {
+                \ 'd': 'serve-d',
+                \ 'javascript': 'javascript-typescript-langserver',
+                \ 'typescript': 'javascript-typescript-langserver'
+                \ }
+    let g:lsc_auto_map = v:true
+    let g:lsc_enable_autocomplete = v:true
+    if executable('cquery')
+        au User lsp_setup call lsp#register_server({
+                    \ 'name': 'cquery',
+                    \ 'cmd': {server_info->['cquery']},
+                    \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+                    \ 'initialization_options': { 'cacheDirectory': '/tmp/cquery' },
+                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+                    \ })
+    endif
+endif
 
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'path_html': '~/public_html/'}]
 
