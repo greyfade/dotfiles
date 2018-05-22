@@ -1,0 +1,3 @@
+
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+[[ -f ~/.localXresources ]] && xrdb -merge -I$HOME ~/.localXresources
