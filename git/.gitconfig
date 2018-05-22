@@ -26,3 +26,5 @@
 	recurseSubmodules = true
 [pull]
 	rebase = true
+[submodule]
+	recurse = true
