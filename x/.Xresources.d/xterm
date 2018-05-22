@@ -7,9 +7,5 @@ XTerm.ttyModes: erase ^?
 XTerm.vt100.saveLines: 4096
 XTerm.vt100.scrollBar: false
 
-! theme
-XTerm.vt100.allowBoldFonts: true
-XTerm*Background: black
-
 
 ! vim ft=xdefaults

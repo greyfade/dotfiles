@@ -10,5 +10,6 @@ URxvt*scrollTtyKeypress: true
 URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
 
+! URxvt.letterSpace: 0
 
 ! vim ft=xdefaults

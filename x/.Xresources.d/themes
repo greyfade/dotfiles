@@ -1,21 +1,37 @@
-*VT100*background: black
-*VT100*foreground: rgb:d9/d9/d9
+*background: black
+*foreground: rgb:d9/d9/d9
 
-*VT100*color0: rgb:00/00/00
-*VT100*color1: rgb:db/2d/43
-*VT100*color2: rgb:68/c8/5c
-*VT100*color3: rgb:fd/c3/63
-*VT100*color4: rgb:26/9d/ce
-*VT100*color5: rgb:d1/9f/e4
-*VT100*color6: rgb:1a/c1/b9
-*VT100*color7: rgb:c1/c5/d3
-*VT100*color8: gray50
-*VT100*color9: rgb:ed/46/5c
-*VT100*color10: rgb:00/ff/00
-*VT100*color11: rgb:fc/f4/a4
-*VT100*color12: rgb:76/d2/fb
-*VT100*color13: rgb:fd/c7/f9
-*VT100*color14: rgb:a3/de/f8
-*VT100*color15: rgb:f1/f1/f3
+! black/gray/white
+*color0: rgb:00/00/00
+*color7: rgb:c1/c5/d3
+*color8: gray50
+*color15: rgb:f1/f1/f3
+! red/light red
+*color1: rgb:db/2d/43
+*color9: rgb:ed/46/5c
+! green/light green
+*color2: rgb:68/c8/5c
+*color10: rgb:00/ff/00
+! yellow/light yellow
+*color3: rgb:fd/c3/63
+*color11: rgb:fc/f4/a4
+! blue/light blue
+*color4: rgb:26/9d/ce
+*color12: rgb:76/d2/fb
+! magenta/light magenta
+*color5: rgb:d1/9f/e4
+*color13: rgb:fd/c7/f9
+! cyan/light cyan
+*color6: rgb:1a/c1/b9
+*color14: rgb:a3/de/f8
+
+! fonts
+XTerm.vt100.allowBoldFonts: true
+XTerm.vt100.faceSize: 9pt
+XTerm.vt100.faceName: Source Code Pro:style=Regular:antialias=true
+XTerm.vt100.faceNameDoublesize: Sazanami Gothic
+
+URxvt.font: -xos4-terminus-medium-r-normal--12-120-72-72-c-60-iso10646-1
+URxvt.boldFont: -xos4-terminus-bold-r-normal--12-120-72-72-c-60-iso10646-1
 
 ! vim ft=xdefaults
