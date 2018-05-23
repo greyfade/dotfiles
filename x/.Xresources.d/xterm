@@ -8,4 +8,4 @@ XTerm.vt100.saveLines: 4096
 XTerm.vt100.scrollBar: false
 
 
-! vim ft=xdefaults
+! vim:ft=xdefaults

@@ -12,4 +12,4 @@ URxvt.secondaryScroll: 0
 
 ! URxvt.letterSpace: 0
 
-! vim ft=xdefaults
+! vim:ft=xdefaults
