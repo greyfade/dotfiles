@@ -1,29 +1,47 @@
 *background: black
 *foreground: rgb:d9/d9/d9
+URxvt*background: [100]rgb:00/00/00
 
 ! black/gray/white
-*color0: rgb:00/00/00
-*color7: rgb:c1/c5/d3
-*color8: gray50
-*color15: rgb:f1/f1/f3
+! *color0: rgb:00/00/00
+! *color7: rgb:c1/c5/d3
+! *color8: gray50
+! *color15: rgb:f1/f1/f3
 ! red/light red
-*color1: rgb:db/2d/43
-*color9: rgb:ed/46/5c
+! *color1: rgb:db/2d/43
+! *color9: rgb:ff/51/98
 ! green/light green
-*color2: rgb:68/c8/5c
-*color10: rgb:00/ff/00
+! *color2: rgb:68/c8/5c
+! *color10: rgb:00/ff/00
 ! yellow/light yellow
-*color3: rgb:fd/c3/63
-*color11: rgb:fc/f4/a4
+! *color3: rgb:fd/c3/63
+! *color11: rgb:fc/f4/a4
 ! blue/light blue
-*color4: rgb:26/9d/ce
-*color12: rgb:76/d2/fb
+! *color4: rgb:26/9d/ce
+! *color12: rgb:76/d2/fb
 ! magenta/light magenta
-*color5: rgb:d1/9f/e4
-*color13: rgb:fd/c7/f9
+! *color5: rgb:d1/9f/e4
+! *color13: rgb:fd/c7/f9
 ! cyan/light cyan
-*color6: rgb:1a/c1/b9
-*color14: rgb:a3/de/f8
+! *color6: rgb:0b/cd/aa
+! *color14: rgb:64/dc/b7
+
+*color0: rgb:37/3f/7b
+*color1: rgb:ec/1c/2d
+*color2: rgb:51/c4/56
+*color3: rgb:ff/cc/56
+*color4: rgb:5f/95/ce
+*color5: rgb:ed/45/8d
+*color6: rgb:28/da/c5
+*color7: rgb:96/81/b9
+*color8: rgb:8e/5d/a6
+*color9: rgb:ea/4b/5b
+*color10: rgb:cc/ed/c5
+*color11: rgb:fd/f7/b0
+*color12: rgb:9e/db/f8
+*color13: rgb:ff/cc/e6
+*color14: rgb:ba/ef/f4
+*color15: rgb:ff/fa/fe
 
 ! fonts
 XTerm.vt100.allowBoldFonts: true
