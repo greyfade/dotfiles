@@ -7,9 +7,16 @@ URxvt*scrollWithBuffer: true
 ! scroll back to the bottom on keypress
 URxvt*scrollTtyKeypress: true
 
-URxvt.secondaryScreen: 1
-URxvt.secondaryScroll: 0
+URxvt*scrollBar: 0
+URxvt*saveLines: 4096
+
+URxvt*secondaryScreen: 1
+URxvt*secondaryScroll: 0
 
 ! URxvt.letterSpace: 0
+
+URxvt*depth: 32
+
+
 
 ! vim:ft=xdefaults
