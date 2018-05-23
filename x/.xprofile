@@ -1,4 +1,12 @@
+#!/bin/sh
 
 [[ -e /usr/share/fonts/local ]] && xset +fp /usr/share/fonts/local
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 [[ -f ~/.localXresources ]] && xrdb -merge -I$HOME ~/.localXresources
+
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+
+ibus-daemon -drx
+
