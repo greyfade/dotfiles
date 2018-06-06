@@ -7,6 +7,7 @@ unsetopt flowcontrol
 setopt auto_menu
 setopt complete_in_word
 setopt always_to_end
+setopt interactivecomments
 
 bindkey -M menuselect '^o' accept-and-infer-next-history
 zstyle ':completion:*:*:*:*:*' menu select
@@ -29,21 +30,28 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
         usbmux uucp vcsa wwwrun xfs '_*'
 zstyle '*' single-ignored show
 
-# emacs mode
-bindkey -e
-
 source $HOME/.sh_aliases
 source $HOME/.sh_paths
 source $HOME/.sh_functions
 source $HOME/.sh_colorize
 
-
 # correct_all is stupid and whoever thought it was a good idea to set it is stupid.
 setopt correct nocorrect_all
 
+if [ -z "$HISTFILE" ]; then
+    HISTFILE=$HOME/.zsh_history
+fi
 HISTSIZE=30000
 SAVEHIST=100000
-setopt appendhistory extendedglob notify hist_ignore_dups extendedhistory
+setopt append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+setopt share_history
+setopt extendedglob notify
 bindkey '[3~' delete-char
 
 if [ -f ~/.profile ]; then

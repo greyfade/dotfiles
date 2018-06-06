@@ -125,4 +125,10 @@ function title_preexec {
 
 add-zsh-hook preexec title_preexec
 
-# vim ft=zsh
+
+function md() {
+  mkdir -p $1
+  cd $1
+}
+
+# vim:ft=zsh
