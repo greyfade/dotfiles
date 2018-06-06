@@ -1,6 +1,6 @@
 *background: black
-*foreground: rgb:d9/d9/d9
-URxvt*background: [100]rgb:00/00/00
+*foreground: rgb:89/c9/89
+URxvt*background: [85]rgb:0c/00/12
 
 ! black/gray/white
 ! *color0: rgb:00/00/00
