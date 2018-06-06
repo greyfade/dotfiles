@@ -1,0 +1,128 @@
+autoload -U terminfo
+autoload -U add-zsh-hook
+
+# Get local weather and present it nicely
+weather() {
+  # We require 'curl' so check for it
+  if ! command -v curl &>/dev/null; then
+    printf "%s\n" "[ERROR] weather: This command requires 'curl', please install it."
+    return 1
+  fi
+
+  # If no arg is given, default to Bellingham, WA
+  curl -m 10 "http://wttr.in/${*:-Bellingham,+WA}" 2>/dev/null || printf "%s\n" "[ERROR] weather: Could not connect to weather service."
+}
+
+# ssh-agent {{{
+typeset _ssh_env_cache
+_ssh_env_cache="$HOME/.ssh/environment-${HOST/.*/}"
+function _start_ssh_agent() {
+    ssh-agent -s -t 4h | sed 's/^echo/#echo/' >! "$_ssh_env_cache"
+
+    for ident in $HOME/.ssh/*.pub; do
+        ssh-add ${ident/.pub/}
+    done
+}
+
+if [[ -n "$SSH_AUTH_SOCK" ]]; then
+    [[ -L "$SSH_AUTH_SOCK" ]] || ln -snf "$SSH_AUTH_SOCK" /tmp/ssh-agent-$USER-screen
+elif [[ -f "$_ssh_env_cache" ]]; then
+    . "$_ssh_env_cache" > /dev/null
+    pgrep ssh-agent | grep -q $SSH_AGENT_PID || {
+        _start_ssh_agent
+    }
+else
+    _start_ssh_agent
+fi
+
+unset _ssh_env_cache
+# }}}
+# battery/UPS {{{
+if [[ -x "$(whence apcaccess)" ]]; then
+    function battery_pct_remaining() {
+        echo $(apcaccess | fgrep BCHARGE | cut -d: -f2 | cut -d\  -f2)
+    }
+    function battery_time_remaining() {
+        echo $(apcaccess | fgrep TIMELEFT | cut -d: -f2)
+    }
+    function battery_pct_prompt() {
+        b=$(battery_pct_remaining)
+        if [[ $b -gt 60 ]]; then
+            color=green
+        elif [[ $b -gt 25 ]]; then
+            color=yellow
+        else
+            color=red
+        fi
+        echo "%{$fg[$color]%}$(battery_pct_remaining)%%%{$reset_color%}"
+    }
+else
+    function battery_pct_remaining() {
+    }
+    function battery_time_remaining() {
+    }
+    function battery_pct_prompt() {
+    }
+fi
+# }}}
+# git prompt {{{
+function git_prompt_info() {
+    local ref
+    ref=$(command git symbolic-ref HEAD 2>/dev/null) || \
+    ref=$(command git rev-parse --short HEAD 2>/dev/null) || return 0
+    echo "git:(${ref#refs/heads/}$(parse_git_dirty))"
+}
+function parse_git_dirty() {
+    local STATUS=''
+    local -a FLAGS
+    FLAGS=('--porcelain' '--untracked-files=no')
+    STATUS=$(command git status ${FLAGS} 2>/dev/null | tail -n1)
+    if [[ -n "$STATUS" ]]; then
+        # dirty
+        echo "*"
+    else
+        # clean
+        echo ""
+    fi
+}
+# }}}
+
+function title {
+    emulate -L zsh
+    [[ "$EMACS" == *term* ]] && return
+    : ${2=$1}
+    case "$TERM" in
+        cygwin|xterm*|putty*|rxvt*|ansi)
+            print -Pn "\e]2;$2:q\a" # window
+            print -Pn "\e]1;$1:q\a" # tab
+            ;;
+        screen*)
+            print -Pn "\ek$1:q\e\\"
+            ;;
+        *)
+            if [[ -n "$terminfo[fsl]" ]] && [[ -n "$terminfo[tsl]" ]]; then
+                echoti tsl
+                print -Pn "$1"
+                echoti fsl
+            fi
+            ;;
+    esac
+}
+
+function title_precmd {
+    title "%15<..<%~%<<" "%n@%m: %~"
+}
+
+add-zsh-hook precmd title_precmd
+
+function title_preexec {
+    setopt extended_glob
+    local CMD=${1[(wr)^(*=*|sudo|ssh|mosh|rake|-*)]:gs/%/%%}
+    local LINE="${2:gs/%/%%}"
+
+    title "$CMD" "%100>...>$LINE%<<"
+}
+
+add-zsh-hook preexec title_preexec
+
+# vim ft=zsh

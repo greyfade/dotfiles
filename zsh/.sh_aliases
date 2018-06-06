@@ -1,7 +1,32 @@
-# {{{ Aliases
+alias ebuild='nocorrect ebuild'
+alias gist='nocorrect gist'
+alias heroku='nocorrect heroku'
+alias hpodder='nocorrect hpodder'
+alias man='nocorrect man'
+alias mkdir='nocorrect mkdir'
+alias mv='nocorrect mv'
+alias mysql='nocorrect mysql'
+alias sudo='nocorrect sudo'
+
+setopt correct_all
+
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushdminus
+setopt auto_cd
+setopt multios
+
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
+
+alias -- -='cd -'
+
+alias l='ls -lah'
 alias ls="ls -F --color=always"
-alias ll="ls -l"
-alias la="ls -a"
+alias ll="ls -lh"
+alias la="ls -lAh"
 alias lsr="ls -lSr"
 alias grep="grep --color=always ${GREP_OPTIONS}"
 alias mv="mv -i"
@@ -12,6 +37,23 @@ alias engage="play -n -c1 synth whitenoise band -n 100 20 band -n 50 20 gain +25
 alias engage-high="play -c2 -n synth whitenoise band -n 100 24 band -n 300 100 gain +20"
 
 alias astyle-c="astyle -t4 -L -m2 -f -p -U -k3 -W3 --brackets=stroustrup -j -O -xC80 -z2"
-# }}}
 
-# vim ft=zsh
+alias rcp="rsync -aiPvhz"
+alias rmv="rsync -aiPvhuz --remove-source-files --prune-empty-dirs"
+alias rup="rsync -aiPvhuz"
+
+if [[ -x "$(which pacaur)" ]]; then
+    upgrade() {
+        pacaur -Syu "$@"
+    }
+elif [[ -x "$(which trizen)" ]]; then
+    upgrade() {
+        trizen -Syu "$@"
+    }
+elif [[ -x "$(which pacman)" ]]; then
+    upgrade() {
+        sudo pacman -Syu "$@"
+    }
+fi
+
+# vim:ft=zsh
