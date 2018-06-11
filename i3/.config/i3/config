@@ -150,13 +150,13 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # media keys
-#bindsym XF86AudioMute 
-#bindsym XF86LowerAudio 
-#bindsym XF86RaiseAudio 
-#bindsym XF86AduioMicMute 
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86LowerAudio exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86RaiseAudio exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AduioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
 
-#bindsym XF86MonBrightnessDown 
-#bindsym XF86MonBrightnessUp 
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 #bindsym XF86Display 
 
 #bindsym XF86WLAN 
