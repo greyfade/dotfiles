@@ -17,6 +17,6 @@ URxvt*secondaryScroll: 0
 
 URxvt*depth: 32
 
-
+URxvt*preeditType: Root
 
 ! vim:ft=xdefaults
