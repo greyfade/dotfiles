@@ -7,6 +7,8 @@
 [credential]
 	helper = cache
 [alias]
+	assume = update-index --assume-unchanged
+	unassume = update-index --no-assume-unchanged
 	up = !git fetch origin && git rebase origin/master
 	st = status -sb
 	stat = status
@@ -22,6 +24,10 @@
 	meta = yellow bold
 [merge]
 	tool = vimdiff
+[mergetool "nvimdiff"]
+	cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd c' -c '$wincmd J'
+[mergetool "nvimdiff3"]
+	cmd = nvim -f -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
 [fetch]
 	recurseSubmodules = true
 [pull]
