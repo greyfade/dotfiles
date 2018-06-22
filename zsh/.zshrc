@@ -8,6 +8,8 @@ setopt auto_menu
 setopt complete_in_word
 setopt always_to_end
 setopt interactivecomments
+setopt no_nomatch
+setopt no_nullglob
 
 bindkey -M menuselect '^o' accept-and-infer-next-history
 zstyle ':completion:*:*:*:*:*' menu select
