@@ -1,6 +1,24 @@
 
-zmodload -i zsh/complist
-autoload -U compaudit compinit
+if [[ -e /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
+    . /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+elif [[ -x "$(whence pacaur)" ]]; then
+    echo 'pacaur -S zsh-history-substring-search'
+fi
+if [[ -e /usr/share/zsh/plugins/zsh-directory-history/zsh-directory-history.zsh ]]; then
+    . /usr/share/zsh/plugins/zsh-directory-history/zsh-directory-history.zsh
+elif [[ -x "$(whence pacaur)" ]]; then
+    echo 'pacaur -S zsh-directory-history-git'
+fi
+if [[ -e /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+    . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [[ -x "$(whence pacaur)" ]]; then
+    echo 'pacaur -S zsh-autosuggestions'
+fi
+if [[ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [[ -x "$(whence pacaur)" ]]; then
+    echo 'pacaur -S zsh-syntax-highlighting'
+fi
 
 unsetopt menu_complete
 unsetopt flowcontrol
@@ -11,8 +29,11 @@ setopt interactivecomments
 setopt no_nomatch
 setopt no_nullglob
 
+zmodload -i zsh/complist
+autoload -U compaudit compinit && compinit
+
 bindkey -M menuselect '^o' accept-and-infer-next-history
-zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' menu yes select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
@@ -69,23 +90,3 @@ zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{11}%r'
 zstyle ':vcs_info:*' enable git svn cvs darcs hg
 zstyle ':vcs_info:*' disable bzr
 
-if [[ -e /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
-    . /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-elif [[ -x "$(whence pacaur)" ]]; then
-    echo 'pacaur -S zsh-history-substring-search'
-fi
-if [[ -e /usr/share/zsh/plugins/zsh-directory-history/zsh-directory-history.zsh ]]; then
-    . /usr/share/zsh/plugins/zsh-directory-history/zsh-directory-history.zsh
-elif [[ -x "$(whence pacaur)" ]]; then
-    echo 'pacaur -S zsh-directory-history-git'
-fi
-if [[ -e /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-    . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-elif [[ -x "$(whence pacaur)" ]]; then
-    echo 'pacaur -S zsh-autosuggestions'
-fi
-if [[ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-    . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-elif [[ -x "$(whence pacaur)" ]]; then
-    echo 'pacaur -S zsh-syntax-highlighting'
-fi

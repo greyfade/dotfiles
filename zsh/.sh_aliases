@@ -72,7 +72,9 @@ fi
 
 # [Up-Arrow]
 if [[ "${terminfo[kcuu1]}" != "" ]]; then
-    if typeset -f directory-history-search-backward > /dev/null; then
+    if typeset -f history-substring-search-up > /dev/null; then
+        bindkey "${terminfo[kcuu1]}" history-substring-search-up
+    elif typeset -f directory-history-search-backward > /dev/null; then
         zle -N directory-history-search-backward
         bindkey "${terminfo[kcuu1]}" directory-history-search-backward
     else
@@ -81,9 +83,12 @@ if [[ "${terminfo[kcuu1]}" != "" ]]; then
         bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
     fi
 fi
+bindkey "^[[A" history-substring-search-up
 # [Down-Arrow]
 if [[ "${terminfo[kcud1]}" != "" ]]; then
-    if typeset -f directory-history-search-forward > /dev/null; then
+    if typeset -f history-substring-search-down > /dev/null; then
+        bindkey "${terminfo[kcud1]}" history-substring-search-down
+    elif typeset -f directory-history-search-forward > /dev/null; then
         zle -N directory-history-search-forward
         bindkey "${terminfo[kcud1]}" directory-history-search-forward
     else
@@ -92,6 +97,7 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
         bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
     fi
 fi
+bindkey "^[[B" history-substring-search-down
 
 if [[ "${terminfo[khome]}" != "" ]]; then
     bindkey "${terminfo[khome]}" beginning-of-line
