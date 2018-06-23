@@ -1,6 +1,7 @@
 *background: black
 *foreground: rgb:89/c9/89
-URxvt*background: [85]rgb:0c/00/12
+URxvt*background: [85]rgb:0e/00/16
+URxvt*foreground: rgb:89/c9/89
 
 ! black/gray/white
 ! *color0: rgb:00/00/00
@@ -26,7 +27,7 @@ URxvt*background: [85]rgb:0c/00/12
 ! *color6: rgb:0b/cd/aa
 ! *color14: rgb:64/dc/b7
 
-*color0: rgb:37/3f/7b
+*color0: rgb:29/40/75
 *color1: rgb:ec/1c/2d
 *color2: rgb:51/c4/56
 *color3: rgb:ff/cc/56
