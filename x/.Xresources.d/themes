@@ -34,6 +34,8 @@ XTerm.vt100.faceSize: 9pt
 XTerm.vt100.faceName: Source Code Pro:style=Regular:antialias=true
 XTerm.vt100.faceNameDoublesize: Sazanami Gothic
 
+URxvt.intensityStyles: true
+
 URxvt.font: -xos4-terminus-medium-r-normal--12-120-72-72-c-60-iso10646-1
 URxvt.boldFont: -xos4-terminus-bold-r-normal--12-120-72-72-c-60-iso10646-1
 
