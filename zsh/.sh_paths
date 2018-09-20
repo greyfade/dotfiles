@@ -7,6 +7,8 @@ export SQUEAK_IMAGE=$HOME/.squeak/squeak.image
 
 export GOPATH=$HOME/.local/gocode
 
+export INCLUDEOS_PREFIX=~/.local/includeos
+
 export PATH="$PATH:$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.local/gocode/bin"
 if [ -e ~/.local/includeos/bin ]; then
     export PATH="$PATH:${HOME}/.local/includeos/bin"
