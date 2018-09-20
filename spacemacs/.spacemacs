@@ -370,10 +370,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (setq theming-modifications '(
                                 (cyberpunk
-                                 (default :background "#080014"))))
-  ;; theme customizations
-  (set-face-background 'hl-line "#160c20")
-  (set-face-background 'flyspell-incorrect "#300c10")
+                                 (default :background "#080013"))))
   )
 
 (defun dotspacemacs/user-config ()
@@ -394,6 +391,12 @@ you should place your code here."
             (lambda ()
               (setq flycheck-clang-language-standard "c++14")
               (setq flycheck-gcc-language-standard "c++14")))
+
+  ;; theme customizations
+  (set-face-background 'hl-line "#160c20")
+  (set-face-background 'flyspell-incorrect "#300c10")
+
+  (spacemacs/enable-transparency)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -442,7 +445,7 @@ you should place your code here."
  '(hl-fg-colors
    (quote
     ("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36")))
- '(hl-paren-colors (quote ("#2aa198" "#b58900" "#268bd2" "#6c71c4" "#859900")) t)
+ '(hl-paren-colors (quote ("#2aa198" "#b58900" "#268bd2" "#6c71c4" "#859900")))
  '(latex-run-command "xelatex")
  '(magit-diff-use-overlays nil)
  '(nrepl-message-colors
@@ -456,8 +459,25 @@ you should place your code here."
  '(pos-tip-foreground-color "#272822")
  '(python-check-command "pyflakes-python2")
  '(python-shell-extra-pythonpaths (quote ("/home/greywolf/zubie/Src/CoreEngine/host")))
- '(python-shell-interpreter "ipython2")
- '(safe-local-variable-values (quote nil))
+ '(python-shell-interpreter "ipython2" t)
+ '(safe-local-variable-values
+   (quote
+    ((flycheck-clang-include-path
+      ("include" "build" "src"))
+     (flycheck-clang-includes
+      ("include" "build" "src"))
+     (flycheck-gcc-include-path
+      ("include" "build" "src"))
+     (flycheck-gcc-includes
+      ("include" "build" "src"))
+     (flycheck-clang-include-path
+      ("/home/greywolf/Dropbox/projects/r3d/include" "/home/greywolf/Dropbox/projects/r3d/spdlog/include" "/home/greywolf/Dropbox/projects/r3d/build" "/home/greywolf/Dropbox/projects/r3d/src"))
+     (flycheck-clang-includes
+      ("/home/greywolf/Dropbox/projects/r3d/include" "/home/greywolf/Dropbox/projects/r3d/spdlog/include" "/home/greywolf/Dropbox/projects/r3d/build" "/home/greywolf/Dropbox/projects/r3d/src"))
+     (flycheck-gcc-include-path
+      ("/home/greywolf/Dropbox/projects/r3d/include" "/home/greywolf/Dropbox/projects/r3d/spdlog/include" "/home/greywolf/Dropbox/projects/r3d/build" "/home/greywolf/Dropbox/projects/r3d/src"))
+     (flycheck-gcc-includes
+      ("/home/greywolf/Dropbox/projects/r3d/include" "/home/greywolf/Dropbox/projects/r3d/spdlog/include" "/home/greywolf/Dropbox/projects/r3d/build" "/home/greywolf/Dropbox/projects/r3d/src")))))
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
  '(term-default-bg-color "#002b36")
  '(term-default-fg-color "#839496")
