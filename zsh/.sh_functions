@@ -137,8 +137,16 @@ add-zsh-hook preexec title_preexec
 
 
 function md() {
-  mkdir -p $1
-  cd $1
+    mkdir -p $1
+    cd $1
+}
+
+function cdl() {
+    pushd "$1" && ls -CF --color=always "${@:2}"
+}
+
+function dur() {
+    ls -lSr -hd "${1:-.}"/**/*; du -ch -- "${1:-.}"/ | sort -h; df -h "$@"
 }
 
 # vim:ft=zsh
