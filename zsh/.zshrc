@@ -20,27 +20,33 @@ elif [[ -x "$(whence pacaur)" ]]; then
     echo 'pacaur -S zsh-syntax-highlighting'
 fi
 
-unsetopt menu_complete
-unsetopt flowcontrol
-setopt auto_menu
-setopt complete_in_word
-setopt always_to_end
-setopt interactivecomments
-setopt no_nomatch
-setopt no_nullglob
-
 zmodload -i zsh/complist
 autoload -U compaudit compinit && compinit
 
+unsetopt flowcontrol
+
+unsetopt menucomplete
+setopt list_ambiguous
+setopt complete_in_word
+setopt glob_complete
+unsetopt complete_aliases
+setopt always_to_end
+setopt auto_param_slash
+setopt interactivecomments
+setopt no_nomatch
+setopt no_nullglob
+setopt no_listbeep
+
 bindkey -M menuselect '^o' accept-and-infer-next-history
-zstyle ':completion:*' menu yes select
+zstyle ':completion:*' menu select=2
+zstyle ':completion:*' verbose yes
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
 zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
 zstyle ':completion::complete:*' use-cache 1
-zstyle ':completion::complete:*' cache-path "$HOME/.zsh/cache/"
+zstyle ':completion::complete:*' cache-path "$HOME/.cache/zsh/completion/"
 
 zstyle ':completion:*:*:*:users' ignored-patterns \
         adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna \
