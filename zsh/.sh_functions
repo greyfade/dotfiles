@@ -149,4 +149,18 @@ function dur() {
     ls -lSr -hd "${1:-.}"/**/*; du -ch -- "${1:-.}"/ | sort -h; df -h "$@"
 }
 
+alias rcp="rsync -aiPvh"
+alias rup="rsync -aiPvhu"
+
+function rmv() {
+    local -a flags=(${(M)@:#-*})
+    local -a parms=(${@:#-*})
+    local src="${parms[1]}"
+    local dest="${parms[2]}"
+    rsync -aiPvhu --remove-source-files --prune-empty-dirs "${(@)flags}" "$src" "$dest"
+    if [[ -d "$src" ]] ; then
+        find "$src" -type d -empty -delete
+    fi
+}
+
 # vim:ft=zsh
