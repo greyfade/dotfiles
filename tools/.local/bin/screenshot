@@ -1,0 +1,49 @@
+#!/usr/bin/zsh
+
+WINDOW=''
+SCREEN=''
+SELECTION=''
+DATE="$(date +%F-%H:%M:%S)"
+SIZEINFO=""
+FILENAME=""
+
+while [[ ! -z "$1" ]] {
+    parm="$1"
+    shift
+    case "$parm" in
+        -window|-win)
+            SCREEN=""
+            SELECTION=""
+            WINID="$(xdotool getactivewindow)"
+            WINDOW="-window $WINID"
+            SIZEINFO="window-$(xwininfo -int -id $WINID | awk '/Width|Height/{print $2}' | paste -dx - -)"
+            ;;
+        -screen|-scr)
+            WINDOW=""
+            SCREEN="-screen -window root"
+            SELECTION=""
+            SIZEINFO="screen-$(xwininfo -root | grep --color=never 'Width\|Height' | awk '{print $2}' | paste -dx - -)"
+            ;;
+        -select|-selection|-sel)
+            WINDOW=""
+            SCREEN=""
+            SELECTION="-set filename:area %wx%h"
+            SIZEINFO="%[filename:area]"
+            ;;
+        -frame)
+            WINDOW="${WINDOW} -frame"
+            ;;
+        *)
+            parm="${parm//\%D/$DATE}"
+            parm="${parm//\%S/$SIZEINFO}"
+            FILENAME="$parm"
+            ;;
+    esac
+}
+
+if [[ -z "$FILENAME" ]]; then
+    FILENAME="$HOME/Pictures/screenshot-$DATE-$SIZEINFO.png"
+fi
+
+import ${(z)WINDOW} ${(z)SCREEN} ${(z)SELECTION} "$FILENAME"
+
