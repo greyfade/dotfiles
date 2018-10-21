@@ -47,3 +47,14 @@ fi
 
 import ${(z)WINDOW} ${(z)SCREEN} ${(z)SELECTION} "$FILENAME"
 
+if [[ -e "$FILENAME" ]] ; then
+    python - << EOF
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk, GLib
+rm=Gtk.RecentManager.get_default()
+rm.add_item("file://$FILENAME")
+GLib.idle_add(Gtk.main_quit)
+Gtk.main()
+EOF
+fi
