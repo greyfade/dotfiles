@@ -42,7 +42,7 @@ while [[ ! -z "$1" ]] {
 }
 
 if [[ -z "$FILENAME" ]]; then
-    FILENAME="$HOME/Pictures/screenshot-$DATE-$SIZEINFO.png"
+    FILENAME="$(xdg-user-dir PICTURES)/screenshot-$DATE-$SIZEINFO.png"
 fi
 
 import ${(z)WINDOW} ${(z)SCREEN} ${(z)SELECTION} "$FILENAME"
