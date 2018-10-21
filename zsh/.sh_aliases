@@ -38,10 +38,6 @@ alias engage-high="play -c2 -n synth whitenoise band -n 100 24 band -n 300 100 g
 
 alias astyle-c="astyle -t4 -L -m2 -f -p -U -k3 -W3 --brackets=stroustrup -j -O -xC80 -z2"
 
-alias rcp="rsync -aiPvh"
-alias rmv="rsync -aiPvhu --remove-source-files --prune-empty-dirs"
-alias rup="rsync -aiPvhu"
-
 if [[ -x "$(which pacaur)" ]]; then
     upgrade() {
         pacaur -Syu "$@"
