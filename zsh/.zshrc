@@ -38,6 +38,8 @@ setopt no_nullglob
 setopt no_listbeep
 
 bindkey -M menuselect '^o' accept-and-infer-next-history
+zle -C all-matches complete-word _generic
+bindkey '^Xa' all-matches
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
@@ -47,6 +49,8 @@ zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w 
 zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path "$HOME/.cache/zsh/completion/"
+zstyle ':completion:all-matches:*' old-matches only
+zstyle ':completion:all-matches::::' completer _all_matches
 
 zstyle ':completion:*:*:*:users' ignored-patterns \
         adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna \
