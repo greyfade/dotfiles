@@ -11,4 +11,6 @@ fi
 [ -f /etc/xprofile ] && . /etc/xprofile
 [ -f ~/.xprofile ] && . ~/.xprofile
 
+feh --bg-fill $HOME/.config/background.png
+
 exec i3
