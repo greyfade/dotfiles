@@ -165,4 +165,18 @@ function rmv() {
     fi
 }
 
+function unpack() {
+    filename="$1"
+    echo "$filename"
+    shift
+    dirname="$(basename "${filename%.*}")"
+    echo "$dirname"
+    mkdir -p "$dirname"
+    ( cd "$dirname" && 7z x -w"$dirname" "$filename" )
+}
+function unpack-mv() {
+    unpack "$1"
+    mv "$@"
+}
+
 # vim:ft=zsh
