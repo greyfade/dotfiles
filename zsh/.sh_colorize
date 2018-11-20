@@ -3,8 +3,6 @@ autoload -U colors && colors
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
-setopt prompt_subst
-
 # {{{ Manual pages
 #     - colorize, since man-db fails to do so
 export LESS_TERMCAP_mb=$'\E[01;31m'   # begin blinking
@@ -22,11 +20,14 @@ export LESS='-R'
 # GREP has deprecated it and complains constantly if it's set, interfering with aliases
 unset GREP_OPTIONS
 
-setopt PROMPT_SUBST
+setopt prompt_subst
 
-PROMPT=$'%{\e[0;34m%}%B┌[%b%{\e[0m%}%{\e[1;32m%}%n%{\e[1;30m%}@%{\e[0m%}%{\e[0;36m%}%m%{\e[0;34m%}%B]%b%{\e[0m%}─%b%{\e[0;34m%}%B[%b%{\e[1;37m%}%~%{\e[0;34m%}%B]%b%{\e[0m%}─%{\e[0;34m%}%B[%b%{\e[0;33m%}'%D{"%a %b %d, %H:%M"}%b$'%{\e[0;34m%}%B]%b%{\e[0m%}
-%{\e[0;34m%}%B└%B[%{\e[1;35m%}$%{\e[0;34m%}%B] <$(git_prompt_info)>%{\e[0m%}%b '
+PROMPT=$'%{\e[0;34m%}%B[%b%{\e[0m%}%{\e[1;32m%}%n%{\e[1;30m%}@%{\e[0m%}%{\e[0;36m%}%m%{\e[0;34m%}%B]%b%{\e[0m%}─%{\e[0;34m%}%B[%(?|%{\e[1;32m%}$|%{\e[1;35m%}$)%{\e[0;34m%}%B]%b%{\e[0m%} '
+
+RPROMPT=$'%B[%b%{\e[1;37m%}%(5~|%-2~/…/%2~|%~)%{\e[0;34m%}%B]%b%{\e[0m%}─%{\e[0;34m%}<$(git_prompt_info)>'
+
 PS2=$' \e[0;34m%}%B>%{\e[0m%}%b '
 
+RPS2=$'\e[0;34m%}%B%_%{\e[0m%}%b '
 
 # vim:ft=zsh
