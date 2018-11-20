@@ -95,6 +95,7 @@ values."
      ponylang-mode
      zeal-at-point
      flymake-easy
+     company-statistics
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -371,6 +372,21 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq theming-modifications '(
                                 (cyberpunk
                                  (default :background "#080013"))))
+  (with-eval-after-load 'org
+    (setq-default org-pretty-entities t
+                  org-hide-leading-stars t
+                  org-pretty-entities-include-supersubscripts t)
+
+    (defun my-org-settings ()
+      (spacemacs/toggle-auto-fill-mode-on)
+      (setq fill-column 80) ; Insert newline if line longer than 75
+      (abbrev-mode) ; Good for typing
+      ;; (spacemacs/toggle-spelling-checking-on) ; Requires layer 'spell-checking'
+      (org-indent-mode))
+
+    (add-hook 'org-mode-hook #'my-org-settings)
+
+    ) ; end with-eval-after-load 'org
   )
 
 (defun dotspacemacs/user-config ()
@@ -381,6 +397,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+  (add-hook 'company-mode-hook #'company-statistics-mode)
   (global-set-key "\C-cd" 'zeal-at-point)
 
   (add-hook 'c-mode-hook
