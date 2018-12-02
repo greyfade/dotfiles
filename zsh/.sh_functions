@@ -91,7 +91,7 @@ function parse_git_dirty() {
     STATUS=$(command git status ${FLAGS} 2>/dev/null | tail -n1)
     if [[ -n "$STATUS" ]]; then
         # dirty
-        echo " %{\e[1;35m%}%{⧱%G%}%{\e[0;34m%}"
+        echo -e " %{\e[1;35m%}%{⧱%G%}%{\e[0;34m%}"
     else
         # clean
         echo ""
