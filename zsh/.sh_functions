@@ -2,7 +2,7 @@ autoload -U terminfo
 autoload -U add-zsh-hook
 
 # Get local weather and present it nicely
-weather() {
+function weather() {
     # We require 'curl' so check for it
     if ! command -v curl &>/dev/null; then
         printf "%s\n" "[ERROR] weather: This command requires 'curl', please install it."
@@ -13,7 +13,7 @@ weather() {
     curl -m 10 "http://wttr.in/${*:-Bellingham,+WA}" 2>/dev/null || printf "%s\n" "[ERROR] weather: Could not connect to weather service."
 }
 
-cheat() {
+function cheat() {
     # We require 'curl' so check for it
     if ! command -v curl &>/dev/null; then
         printf "%s\n" "[ERROR] weather: This command requires 'curl', please install it."
