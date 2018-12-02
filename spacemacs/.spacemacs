@@ -436,7 +436,7 @@ you should place your code here."
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
  '(evil-want-Y-yank-to-eol nil)
- '(flycheck-python-pycompile-executable "python2")
+ '(flycheck-python-pycompile-executable "python3")
  '(flycheck-python-pylint-executable "pylint2")
  '(flycheck-standard-error-navigation nil)
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
@@ -476,7 +476,7 @@ you should place your code here."
  '(pos-tip-foreground-color "#272822")
  '(python-check-command "pyflakes-python2")
  '(python-shell-extra-pythonpaths (quote ("/home/greywolf/zubie/Src/CoreEngine/host")))
- '(python-shell-interpreter "ipython2" t)
+ '(python-shell-interpreter "ipython2")
  '(safe-local-variable-values
    (quote
     ((flycheck-clang-include-path
