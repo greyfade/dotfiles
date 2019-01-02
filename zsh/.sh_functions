@@ -23,6 +23,19 @@ function cheat() {
     curl -m 10 "http://cht.sh/$1" 2> /dev/null || printf "%s\n" "[ERROR] cheat: could not connect to shitty cheatsheet service."
 }
 
+function swap_hogs() {
+    grep --color=never -n VmSwap /proc/*/status | sort -n -k2 | awk <<EOF
+/proc\/([0-9]+)\/status/ {
+    split($1, p, "/");
+    fn="/proc/"p[3]"/status";
+    getline s < fn;
+    split(s, n, ":");
+    sub(/^[ \t\r\n]+/, "", n[2]);
+    print n[2] " (" p[3] ") " $2 "kB"
+}
+EOF
+}
+
 # ssh-agent {{{
 typeset _ssh_env_cache
 _ssh_env_cache="$HOME/.ssh/environment-${HOST/.*/}"
@@ -169,10 +182,11 @@ function unpack() {
     filename="$1"
     echo "$filename"
     shift
-    dirname="$(basename "${filename%.*}")"
+    basefilename="$(basename "${filename}")"
+    dirname="${basefilename%.*}"
     echo "$dirname"
     mkdir -p "$dirname"
-    ( cd "$dirname" && 7z x -w"$dirname" "$filename" )
+    7z x -o"$dirname" "$filename"
 }
 function unpack-mv() {
     unpack "$1"
