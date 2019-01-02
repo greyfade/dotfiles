@@ -7,5 +7,6 @@ XTerm.ttyModes: erase ^?
 XTerm.vt100.saveLines: 4096
 XTerm.vt100.scrollBar: false
 
+xterm*decTerminalID: vt340
 
 ! vim:ft=xdefaults
