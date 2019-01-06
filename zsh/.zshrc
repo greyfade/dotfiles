@@ -4,11 +4,11 @@ if [[ -e /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substri
 elif [[ -x "$(whence pacaur)" ]]; then
     echo 'pacaur -S zsh-history-substring-search'
 fi
-if [[ -e /usr/share/zsh/plugins/zsh-directory-history/zsh-directory-history.zsh ]]; then
-    . /usr/share/zsh/plugins/zsh-directory-history/zsh-directory-history.zsh
-elif [[ -x "$(whence pacaur)" ]]; then
-    echo 'pacaur -S zsh-directory-history-git'
-fi
+#if [[ -e /usr/share/zsh/plugins/zsh-directory-history/zsh-directory-history.zsh ]]; then
+    #. /usr/share/zsh/plugins/zsh-directory-history/zsh-directory-history.zsh
+#elif [[ -x "$(whence pacaur)" ]]; then
+    #echo 'pacaur -S zsh-directory-history-git'
+#fi
 if [[ -e /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
     . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 elif [[ -x "$(whence pacaur)" ]]; then
