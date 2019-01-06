@@ -24,16 +24,7 @@ function cheat() {
 }
 
 function swap_hogs() {
-    grep --color=never -n VmSwap /proc/*/status | sort -n -k2 | awk <<EOF
-/proc\/([0-9]+)\/status/ {
-    split($1, p, "/");
-    fn="/proc/"p[3]"/status";
-    getline s < fn;
-    split(s, n, ":");
-    sub(/^[ \t\r\n]+/, "", n[2]);
-    print n[2] " (" p[3] ") " $2 "kB"
-}
-EOF
+    grep --color=never -n VmSwap /proc/*/status | sort -n -k2 | awk '/proc\/([0-9]+)\/status/ { split($1, p, "/"); fn="/proc/"p[3]"/status"; getline s < fn; split(s, n, ":"); sub(/^[ \t\r\n]+/, "", n[2]); print n[2] " (" p[3] ") " $2 "kB" }'
 }
 
 # ssh-agent {{{
