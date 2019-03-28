@@ -175,6 +175,7 @@ bar {
     tray_output primary
 }
 
+exec --no-startup-id "feh --bg-fill $HOME/.config/background.png"
 exec --no-startup-id "$HOME/.local/bin/setup-trackpad.sh"
 
 exec --no-startup-id "twmnd default"
