@@ -152,7 +152,7 @@ function cdl() {
 }
 
 function dur() {
-    ls -lSr -hd "${1:-.}"/**/*; du -chd2 -- "${1:-.}"/ | sort -h; df -h "$@"
+    ls -lSr -hd "${1:-.}"/*; du -chd2 -- "${1:-.}"/ | sort -h; df -h "$@"
 }
 
 alias rcp="rsync -aiPvh"
