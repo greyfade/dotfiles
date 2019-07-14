@@ -101,6 +101,8 @@ values."
      zeal-at-point
      flymake-easy
      company-statistics
+     slime
+     slime-company
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -403,6 +405,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (add-hook 'org-mode-hook #'my-org-settings)
 
     ) ; end with-eval-after-load 'org
+  (load (expand-file-name "~/.quicklisp/slime-helper.el"))
+  (setq inferior-lisp-program "/usr/bin/sbcl")
   )
 
 (defun dotspacemacs/user-config ()
