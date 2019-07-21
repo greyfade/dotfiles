@@ -101,3 +101,7 @@ alias l='ls -CF'
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
+
+export INTELFPGAOCLSDKROOT="/opt/altera/hld"
+
+export QSYS_ROOTDIR="/opt/altera/quartus/sopc_builder/bin"

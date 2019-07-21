@@ -31,3 +31,7 @@ URLTOOLS_METHOD="python"
 
 
 # vim ft=zsh
+
+export INTELFPGAOCLSDKROOT="/opt/altera/hld"
+
+export QSYS_ROOTDIR="/opt/altera/quartus/sopc_builder/bin"
