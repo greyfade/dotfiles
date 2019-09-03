@@ -1,8 +1,12 @@
 
 if [[ -e /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
     . /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+elif [[ -e /usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
+    . /usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 elif [[ -x "$(whence pacaur)" ]]; then
     echo 'pacaur -S zsh-history-substring-search'
+elif [[ -x "$(whence zyp)" ]]; then
+    echo 'zyp in zsh-history-substring-search'
 fi
 #if [[ -e /usr/share/zsh/plugins/zsh-directory-history/zsh-directory-history.zsh ]]; then
     #. /usr/share/zsh/plugins/zsh-directory-history/zsh-directory-history.zsh
@@ -11,13 +15,21 @@ fi
 #fi
 if [[ -e /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
     . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [[ -e /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+    . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 elif [[ -x "$(whence pacaur)" ]]; then
     echo 'pacaur -S zsh-autosuggestions'
+elif [[ -x "$(whence zyp)" ]]; then
+    echo 'zyp in zsh-autosuggestions'
 fi
 if [[ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [[ -e /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 elif [[ -x "$(whence pacaur)" ]]; then
     echo 'pacaur -S zsh-syntax-highlighting'
+elif [[ -x "$(whence zyp)" ]]; then
+    echo 'zyp in zsh-syntax-highlighting'
 fi
 
 zmodload -i zsh/complist
