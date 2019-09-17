@@ -7,6 +7,8 @@ elif [[ -x "$(whence pacaur)" ]]; then
     echo 'pacaur -S zsh-history-substring-search'
 elif [[ -x "$(whence zyp)" ]]; then
     echo 'zyp in zsh-history-substring-search'
+else
+    echo "zsh-history-substring-search not found"
 fi
 #if [[ -e /usr/share/zsh/plugins/zsh-directory-history/zsh-directory-history.zsh ]]; then
     #. /usr/share/zsh/plugins/zsh-directory-history/zsh-directory-history.zsh
@@ -21,6 +23,8 @@ elif [[ -x "$(whence pacaur)" ]]; then
     echo 'pacaur -S zsh-autosuggestions'
 elif [[ -x "$(whence zyp)" ]]; then
     echo 'zyp in zsh-autosuggestions'
+else
+    echo "zsh-autosuggestions not found"
 fi
 if [[ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -28,8 +32,12 @@ elif [[ -e /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; th
     . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 elif [[ -x "$(whence pacaur)" ]]; then
     echo 'pacaur -S zsh-syntax-highlighting'
+elif [[ -x "$(whence apt)" ]]; then
+    echo 'sudo apt install zsh-syntax-highlighting'
 elif [[ -x "$(whence zyp)" ]]; then
     echo 'zyp in zsh-syntax-highlighting'
+else
+    echo "zsh-syntax-highlighting not found"
 fi
 
 zmodload -i zsh/complist
