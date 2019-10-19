@@ -20,6 +20,8 @@ filetype on
 filetype plugin on
 filetype indent on
 
+set synmaxcol=255
+
 set grepprg=grep\ -nH\ $*
 if filereadable("/usr/bin/rg")
 	set grepprg=rg\ --vimgrep
