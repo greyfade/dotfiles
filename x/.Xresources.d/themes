@@ -30,7 +30,7 @@ URxvt*foreground: rgb:89/c9/89
 
 ! fonts
 XTerm.vt100.allowBoldFonts: true
-XTerm.vt100.faceSize: 9pt
+XTerm.vt100.faceSize: 10pt
 XTerm.vt100.faceName: Source Code Pro:style=Regular:antialias=true
 XTerm.vt100.faceNameDoublesize: Sazanami Gothic
 
