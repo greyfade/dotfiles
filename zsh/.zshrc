@@ -121,3 +121,9 @@ zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{11}%r'
 zstyle ':vcs_info:*' enable git svn cvs darcs hg
 zstyle ':vcs_info:*' disable bzr
 
+
+if [[ -e NEXT_TO_RUN ]]
+then
+    cat NEXT_TO_RUN
+fi
+

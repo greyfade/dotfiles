@@ -1,4 +1,4 @@
 #!/usr/bin/bash
 
 export WINEPREFIX="${HOME}/.local/share/rpgmaker-wine"
-wine $@
+wine "$@"
