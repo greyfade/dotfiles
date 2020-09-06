@@ -1,28 +1,6 @@
 autoload -U terminfo
 autoload -U add-zsh-hook
 
-# Get local weather and present it nicely
-function weather() {
-    # We require 'curl' so check for it
-    if ! command -v curl &>/dev/null; then
-        printf "%s\n" "[ERROR] weather: This command requires 'curl', please install it."
-        return 1
-    fi
-
-    # If no arg is given, default to Bellingham, WA
-    curl -m 10 "http://wttr.in/${*:-Bellingham,+WA}" 2>/dev/null || printf "%s\n" "[ERROR] weather: Could not connect to weather service."
-}
-
-function cheat() {
-    # We require 'curl' so check for it
-    if ! command -v curl &>/dev/null; then
-        printf "%s\n" "[ERROR] weather: This command requires 'curl', please install it."
-        return 1
-    fi
-
-    curl -m 10 "http://cht.sh/$1" 2> /dev/null || printf "%s\n" "[ERROR] cheat: could not connect to shitty cheatsheet service."
-}
-
 function swap_hogs() {
     grep --color=never -n VmSwap /proc/*/status | sort -n -k2 | awk '/proc\/([0-9]+)\/status/ { split($1, p, "/"); fn="/proc/"p[3]"/status"; getline s < fn; split(s, n, ":"); sub(/^[ \t\r\n]+/, "", n[2]); print n[2] " (" p[3] ") " $2 "kB" }'
 }
@@ -183,6 +161,36 @@ function unpack() {
 function unpack-mv() {
     unpack "$1"
     mv "$@"
+}
+
+cp-lower() {
+    local -a from=()
+    local to
+    local CMD=""
+    local verbose
+    while [[ $# -gt 1 ]]; do
+        case "$1" in
+            -n)
+                CMD=echo
+                echo '.-n' "$@"
+                ;;
+            -v)
+                verbose=-v
+                echo '.-v' "$@"
+                ;;
+            *)
+                if [[ -e "$1" ]]; then
+                    from+=("$to")
+                    to="$1"
+                fi
+                echo "$@"
+                ;;
+        esac
+        shift
+    done
+
+    echo ${(@)from}
+    echo $to
 }
 
 # vim:ft=zsh
