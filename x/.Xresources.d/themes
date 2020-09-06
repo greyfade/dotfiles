@@ -1,4 +1,4 @@
-*background: black
+*background: rgb:0e/00/16
 *foreground: rgb:89/c9/89
 URxvt*background: [85]rgb:0e/00/16
 URxvt*foreground: rgb:89/c9/89
