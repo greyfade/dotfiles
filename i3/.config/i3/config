@@ -155,6 +155,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bindsym Print exec --no-startup-id "$HOME/.local/bin/screenshot -screen"
+bindsym $mod+Shift+S exec --no-startup-id "$HOME/.local/bin/screenshot -select"
 bindsym Control+Print exec --no-startup-id "$HOME/.local/bin/screenshot -select"
 bindsym Shift+Print exec --no-startup-id "$HOME/.local/bin/screenshot -window"
 
@@ -194,5 +195,5 @@ exec --no-startup-id "xrdb -merge -I$HOME $HOME/.Xresources"
 exec --no-startup-id "twmnd default"
 exec --no-startup-id dropbox
 exec --no-startup-id megasync
-exec --no-startup-id compton -b
+exec --no-startup-id picom -b
 exec --no-startup-id /usr/lib/notify-osd/notify-osd
