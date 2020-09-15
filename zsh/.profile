@@ -16,9 +16,11 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+    export PATH="$HOME/bin:$PATH"
+fi
+if [ -d "$HOME/.emacs.d/bin" ] ; then
+    export PATH="$PATH:$HOME/.emacs.d/bin"
 fi
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
