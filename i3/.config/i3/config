@@ -169,6 +169,8 @@ bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec 20"
 
 #bindsym XF86Tools 
 
+bindsym Mod1+Tab exec --no-startup-id rofi -modi combi -combi-modi window -show combi
+
 bindsym $mod+Shift+P exec --no-startup-id "$HOME/.local/bin/i3lock.sh"
 
 for_window [window_role="pop-up"] floating enable
