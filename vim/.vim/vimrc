@@ -5,8 +5,6 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1 " True gui colors in terminal
 
 " I speel gud, but I mkae tyops all the tiem.
 set spelllang=en_us
-" set spell
-" oh my god having spell on is annoying.
 
 " VI est mortuus. Vim vivat.
 set nocompatible
@@ -27,6 +25,7 @@ if filereadable("/usr/bin/rg")
 	set grepprg=rg\ --vimgrep
 	set grepformat^=%f:%l:%c:%m
 endif
+
 let g:tex_flavor = "latex"
 
 " 4-column tabs is the One True Way.
@@ -42,7 +41,7 @@ set foldenable
 set foldclose=all " Close folds if you leave them in any way
 set foldcolumn=1 " Show the foldcolumn
 set foldlevel=0 " Autofold everything by default
-set foldmethod=syntax " Fold on the syntax
+set foldmethod=marker " fold on markers
 set foldnestmax=3
 set foldopen=all " Open folds if you touch them in any way
 " }}}
@@ -53,22 +52,18 @@ imap <F8> <ESC>:silent make\|cwindow\|redraw!<cr>a
 " map <F12> <ESC>:cn<CR>
 nmap <leader>g :silent !grunt hogan coffee less<CR><C-L>
 
-" This seemed like a good idea, but it'll probably only encourage bad habits.
-"command! -bang E e<bang>
-"command! -bang Q q<bang>
-"command! -bang W w<bang>
-"command! -bang QA qa<bang>
-"command! -bang Qa qa<bang>
-"command! -bang Wa wa<bang>
-"command! -bang WA wa<bang>
-"command! -bang Wq wq<bang>
-"command! -bang WQ wq<bang>
+" NetRW shit {{{
+let g:netrw_banner=0
+let g:netrw_altv=1
+let g:netrw_liststyle=3
+" }}}
 
-" A GVim thing.
+" gvim crap {{{
 set title
 if has("gui_running")
 	set go=aegirLt
 endif
+" }}}
 
 " I'm forgetful.
 set history=1000
@@ -93,6 +88,9 @@ set shortmess=atI
 
 set expandtab
 
+set wildmenu
+
+" language-specific settings {{{
 autocmd filetype python set expandtab
 autocmd filetype pony set expandtab
 autocmd filetype php set expandtab
@@ -105,6 +103,7 @@ augroup nemerle
 	autocmd BufNewFile,BufReadPre *.n
 		\ set fencs=ucs-bom,utf-8,iso-8859-2 fenc=utf-8
 augroup END
+" }}}
 
 augroup Binary
 	au!
@@ -168,7 +167,7 @@ set completeopt=longest,menu
 
 " Search paths for completions.
 " Starting with local files and the default includes
-set path+=.,/usr/include
+set path+=**,/usr/include
 " KDE-specific
 set path+=/usr/include/KDE,/usr/include/qt4
 " boost
@@ -186,12 +185,13 @@ let g:proj_flags='imstS'
 " I often forget to use sudoedit. Much to my chagrin.
 cmap w!! %!sudo tee > /dev/null %
 
+" Plugins {{{
 " note:  run :PlugUpgrade | PlugInstall | PlugUpdate
 call plug#begin('~/.vim/plugged')
 
 Plug 'jceb/vim-orgmode'
 Plug 'dleonard0/pony-vim-syntax'
-Plug 'Rip-Rip/clang_complete', { 'for': ['cpp', 'cpp11', 'c'], 'do': 'make install' }
+" Plug 'Rip-Rip/clang_complete', { 'for': ['cpp', 'cpp11', 'c'], 'do': 'make install' }
 Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'vim-scripts/ctx'
 Plug 'kien/rainbow_parentheses.vim'
@@ -200,7 +200,7 @@ Plug 'shemerey/vim-project'
 Plug 'tpope/vim-surround'
 Plug 'vim-latex/vim-latex'
 
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
 Plug 'vimwiki/vimwiki'
 
@@ -214,6 +214,7 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+" }}}
 
 au BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window 'vim | " . expand("%:t") . "'")
 
