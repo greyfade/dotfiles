@@ -15,4 +15,5 @@ feh --bg-fill $HOME/.config/background.png
 
 xrandr --output DP-0 --left-of DP-4
 xrandr --output DP-4 --primary
+dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 exec i3
