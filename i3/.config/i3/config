@@ -183,12 +183,12 @@ bar {
     tray_output primary
 }
 
-exec --no-startup-id "feh --bg-fill $HOME/.config/background.png"
+exec --no-startup-id "feh --bg-fill $HOME/.config/background1.png --bg-fill $HOME/.config/background2.png"
 exec --no-startup-id "$HOME/.local/bin/setup-trackpad.sh"
 exec --no-startup-id "xrdb -merge -I$HOME $HOME/.Xresources"
 
 exec --no-startup-id "twmnd default"
-exec --no-startup-id dropbox
-exec --no-startup-id megasync
-exec --no-startup-id picom -b
-exec --no-startup-id /usr/lib/notify-osd/notify-osd
+exec --no-startup-id taskset -c 23 dropbox
+exec --no-startup-id taskset -c 23 megasync
+exec --no-startup-id taskset -c 23 picom -b
+exec --no-startup-id taskset -c 23 /usr/lib/notify-osd/notify-osd
