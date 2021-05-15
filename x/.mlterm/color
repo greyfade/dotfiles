@@ -1,0 +1,16 @@
+black=rgb:29/40/75
+hl_black=rgb:8e/5d/a6
+red=rgb:ec/1c/2d
+hl_red=rgb:ea/4b/5b
+green=rgb:51/c4/56
+hl_green=rgb:cc/ed/c5
+yellow=rgb:ff/cc/56
+hl_yellow=rgb:fd/f7/b0
+blue=rgb:5f/95/ce
+hl_blue=rgb:9e/db/f8
+magenta=rgb:ed/45/8d
+hl_magenta=rgb:ff/cc/e6
+cyan=rgb:28/da/c5
+hl_cyan=rgb:ba/ef/f4
+white=rgb:96/81/b9
+hl_white=rgb:ff/fa/fe
