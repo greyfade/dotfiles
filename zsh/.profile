@@ -27,7 +27,7 @@ export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 
 export BROWSER="chromium"
-export EDITOR="nvim"
+export EDITOR="vim"
 
 URLTOOLS_METHOD="python"
 
