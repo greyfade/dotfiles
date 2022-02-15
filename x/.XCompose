@@ -1,37 +1,37 @@
 include "%L"
 
 <Multi_key> <g> <a>     : "α"
-<Multi_key> <g> <A>     : "Α"
-<Multi_key> <G> <a>     : "Α"
-<Multi_key> <G> <A>     : "Α"
+<Multi_key> <g> <A>     : "Α"  U0391
+<Multi_key> <G> <a>     : "Α"  U0391
+<Multi_key> <G> <A>     : "Α"  U0391
 <Multi_key> <g> <b>     : "β"
-<Multi_key> <g> <B>     : "Β"
-<Multi_key> <G> <b>     : "Β"
-<Multi_key> <G> <B>     : "Β"
+<Multi_key> <g> <B>     : "Β"  U0392
+<Multi_key> <G> <b>     : "Β"  U0392
+<Multi_key> <G> <B>     : "Β"  U0392
 <Multi_key> <g> <c>     : "ς"
-<Multi_key> <g> <C>     : "Σ"
-<Multi_key> <G> <c>     : "Σ"
-<Multi_key> <G> <C>     : "Σ"
+<Multi_key> <g> <C>     : "Σ"  U0383
+<Multi_key> <G> <c>     : "Σ"  U0383
+<Multi_key> <G> <C>     : "Σ"  U0383
 <Multi_key> <g> <d>     : "δ"
-<Multi_key> <g> <D>     : "Δ"
-<Multi_key> <G> <d>     : "Δ"
-<Multi_key> <G> <D>     : "Δ"
+<Multi_key> <g> <D>     : "Δ"  U0394
+<Multi_key> <G> <d>     : "Δ"  U0394
+<Multi_key> <G> <D>     : "Δ"  U0394
 <Multi_key> <g> <e>     : "ε"
-<Multi_key> <g> <E>     : "Ε"
-<Multi_key> <G> <e>     : "Ε"
-<Multi_key> <G> <E>     : "Ε"
+<Multi_key> <g> <E>     : "Ε"  U0395
+<Multi_key> <G> <e>     : "Ε"  U0395
+<Multi_key> <G> <E>     : "Ε"  U0395
 <Multi_key> <g> <f>     : "φ"
-<Multi_key> <g> <F>     : "Φ"
-<Multi_key> <G> <f>     : "Φ"
-<Multi_key> <G> <F>     : "Φ"
+<Multi_key> <g> <F>     : "Φ"  U03A6
+<Multi_key> <G> <f>     : "Φ"  U03A6
+<Multi_key> <G> <F>     : "Φ"  U03A6
 <Multi_key> <g> <g>     : "γ"
-<Multi_key> <g> <G>     : "Γ"
-<Multi_key> <G> <g>     : "Γ"
-<Multi_key> <G> <G>     : "Γ"
+<Multi_key> <g> <G>     : "Γ"  U0393
+<Multi_key> <G> <g>     : "Γ"  U0393
+<Multi_key> <G> <G>     : "Γ"  U0393
 <Multi_key> <g> <h>     : "η"
-<Multi_key> <g> <H>     : "Η"
-<Multi_key> <G> <h>     : "Η"
-<Multi_key> <G> <H>     : "Η"
+<Multi_key> <g> <H>     : "Η"  U0397
+<Multi_key> <G> <h>     : "Η"  U0397
+<Multi_key> <G> <H>     : "Η"  U0397
 <Multi_key> <g> <i>     : "ι"
 <Multi_key> <g> <I>     : "Ι"
 <Multi_key> <G> <i>     : "Ι"
@@ -114,3 +114,10 @@ include "%L"
 <Multi_key> <t> <a> <u> : "τ"
 <Multi_key> <T> <a> <u> : "Τ"
 <Multi_key> <T> <A> <U> : "Τ"
+
+<Multi_key> <s> <l>     : "ſ"
+
+<Multi_key> <v> <A>     : "𝒜"
+<Multi_key> <v> <B>     : "𝒝"
+
+<Multi_key> <c> <o> <m> <p> : "∘" U2218
