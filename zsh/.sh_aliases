@@ -133,3 +133,4 @@ bindkey "^[m" copy-prev-shell-word
 bindkey -s '^[[Z' '\t'
 
 # vim:ft=zsh
+alias rsync-mv='rsync -aiv --no-g --remove-source-files'

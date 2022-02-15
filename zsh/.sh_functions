@@ -6,28 +6,28 @@ function swap_hogs() {
 }
 
 # ssh-agent {{{
-typeset _ssh_env_cache
-_ssh_env_cache="$HOME/.ssh/environment-${HOST/.*/}"
-function _start_ssh_agent() {
-    ssh-agent -s -t 4h | sed 's/^echo/#echo/' >! "$_ssh_env_cache"
-
-    for ident in $HOME/.ssh/*.pub; do
-        ssh-add ${ident/.pub/}
-    done
-}
-
-if [[ -n "$SSH_AUTH_SOCK" ]]; then
-    [[ -L "$SSH_AUTH_SOCK" ]] || ln -snf "$SSH_AUTH_SOCK" /tmp/ssh-agent-$USER-screen
-elif [[ -f "$_ssh_env_cache" ]]; then
-    . "$_ssh_env_cache" > /dev/null
-    pgrep ssh-agent | grep -q $SSH_AGENT_PID || {
-        _start_ssh_agent
-    }
-else
-    _start_ssh_agent
-fi
-
-unset _ssh_env_cache
+# typeset _ssh_env_cache
+# _ssh_env_cache="$HOME/.ssh/environment-${HOST/.*/}"
+# function _start_ssh_agent() {
+#     ssh-agent -s -t 4h | sed 's/^echo/#echo/' >! "$_ssh_env_cache"
+# 
+#     for ident in $HOME/.ssh/*.pub; do
+#         ssh-add ${ident/.pub/}
+#     done
+# }
+# 
+# if [[ -n "$SSH_AUTH_SOCK" ]]; then
+#     [[ -L "$SSH_AUTH_SOCK" ]] || ln -snf "$SSH_AUTH_SOCK" /tmp/ssh-agent-$USER-screen
+# elif [[ -f "$_ssh_env_cache" ]]; then
+#     . "$_ssh_env_cache" > /dev/null
+#     pgrep ssh-agent | grep -q $SSH_AGENT_PID || {
+#         _start_ssh_agent
+#     }
+# else
+#     _start_ssh_agent
+# fi
+# 
+# unset _ssh_env_cache
 # }}}
 
 # battery/UPS {{{
