@@ -2,31 +2,56 @@
 *foreground: rgb:89/c9/89
 URxvt*background: [85]rgb:0e/00/16
 URxvt*foreground: rgb:89/c9/89
+Zutty.bg:    #0e0016
+Zutty.fg:    #89c989
 
 ! black/gray
-*color0: rgb:29/40/75
-*color7: rgb:8e/5d/a6
+*color0:    rgb:29/40/75
+Zutty.color0:  #294075
+*color7:    rgb:8e/5d/a6
+Zutty.color7:  #8e5da6
+
 ! red/light red
-*color1: rgb:ec/1c/2d
-*color9: rgb:ea/4b/5b
+*color1:    rgb:ec/1c/2d
+Zutty.color1:  #ec1c2d
+*color9:    rgb:ea/4b/5b
+Zutty.color9:  #ea4b5b
+
 ! green/light green
-*color2: rgb:51/c4/56
-*color10: rgb:cc/ed/c5
+*color2:    rgb:51/c4/56
+Zutty.color2:  #51c456
+*color10:   rgb:cc/ed/c5
+Zutty.color10: #ccedc5
+
 ! yellow/light yellow
-*color3: rgb:ff/cc/56
-*color11: rgb:fd/f7/b0
+*color3:    rgb:ff/cc/56
+Zutty.color3:  #ffcc56
+*color11:   rgb:fd/f7/b0
+Zutty.color11: #fdf7b0
+
 ! blue/light blue
-*color4: rgb:5f/95/ce
-*color12: rgb:9e/db/f8
+*color4:    rgb:5f/95/ce
+Zutty.color4:  #5f95ce
+*color12:   rgb:9e/db/f8
+Zutty.color12: #9edbf8
+
 ! magenta/light magenta
-*color5: rgb:ed/45/8d
-*color13: rgb:ff/cc/e6
+*color5:    rgb:ed/45/8d
+Zutty.color5:  #ed458d
+*color13:   rgb:ff/cc/e6
+Zutty.color13: #ffcce6
+
 ! cyan/light cyan
-*color6: rgb:28/da/c5
-*color14: rgb:ba/ef/f4
+*color6:    rgb:28/da/c5
+Zutty.color6:  #28dac5
+*color14:   rgb:ba/ef/f4
+Zutty.color14: #baeff4
+
 ! gray/white
-*color8: rgb:96/81/b9
-*color15: rgb:ff/fa/fe
+*color8:    rgb:96/81/b9
+Zutty.color8:  #9681b9
+*color15:   rgb:ff/fa/fe
+Zutty.color15: #fffafe
 
 ! fonts
 XTerm.vt100.allowBoldFonts: true
