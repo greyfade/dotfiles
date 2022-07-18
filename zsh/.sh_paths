@@ -13,6 +13,9 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.local/gocode/bin"
 if [ -e ~/.local/includeos/bin ]; then
     export PATH="$PATH:${HOME}/.local/includeos/bin"
 fi
+if [ -e ~/.roswell/bin ]; then
+    export PATH="$PATH:${HOME}/.roswell/bin"
+fi
 if [ -e ~/.local/share/x-tools ]; then
     for xtool in $HOME/.local/share/x-tools/*-*/bin
     do
