@@ -1,10 +1,10 @@
-
+# {{{ Reminders to install useful extensions
 if [[ -e /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
     . /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 elif [[ -e /usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
     . /usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 elif [[ -x "$(whence pacaur)" ]]; then
-    echo 'pacaur -S zsh-history-substring-search'
+    echo 'yay -S zsh-history-substring-search'
 elif [[ -x "$(whence zyp)" ]]; then
     echo 'zyp in zsh-history-substring-search'
 else
@@ -20,7 +20,7 @@ if [[ -e /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; 
 elif [[ -e /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
     . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 elif [[ -x "$(whence pacaur)" ]]; then
-    echo 'pacaur -S zsh-autosuggestions'
+    echo 'yay -S zsh-autosuggestions'
 elif [[ -x "$(whence zyp)" ]]; then
     echo 'zyp in zsh-autosuggestions'
 else
@@ -31,7 +31,7 @@ if [[ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.
 elif [[ -e /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 elif [[ -x "$(whence pacaur)" ]]; then
-    echo 'pacaur -S zsh-syntax-highlighting'
+    echo 'yay -S zsh-syntax-highlighting'
 elif [[ -x "$(whence apt)" ]]; then
     echo 'sudo apt install zsh-syntax-highlighting'
 elif [[ -x "$(whence zyp)" ]]; then
@@ -39,6 +39,14 @@ elif [[ -x "$(whence zyp)" ]]; then
 else
     echo "zsh-syntax-highlighting not found"
 fi
+if [[ -x "$(whence direnv)" ]]; then
+    eval "$(direnv hook zsh)"
+elif [[ -x "$(whence pacman)" ]]; then
+    echo 'pacman -S direnv'
+else
+    echo "direnv tool not found"
+fi
+# }}}
 
 zmodload -i zsh/complist
 autoload -U compaudit compinit && compinit
