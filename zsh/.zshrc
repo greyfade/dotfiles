@@ -3,7 +3,7 @@ if [[ -e /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substri
     . /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 elif [[ -e /usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
     . /usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-elif [[ -x "$(whence pacaur)" ]]; then
+elif [[ -x "$(whence yay)" ]]; then
     echo 'yay -S zsh-history-substring-search'
 elif [[ -x "$(whence zyp)" ]]; then
     echo 'zyp in zsh-history-substring-search'
@@ -12,14 +12,14 @@ else
 fi
 #if [[ -e /usr/share/zsh/plugins/zsh-directory-history/zsh-directory-history.zsh ]]; then
     #. /usr/share/zsh/plugins/zsh-directory-history/zsh-directory-history.zsh
-#elif [[ -x "$(whence pacaur)" ]]; then
-    #echo 'pacaur -S zsh-directory-history-git'
+#elif [[ -x "$(whence yay)" ]]; then
+    #echo 'yay -S zsh-directory-history-git'
 #fi
 if [[ -e /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
     . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 elif [[ -e /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
     . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-elif [[ -x "$(whence pacaur)" ]]; then
+elif [[ -x "$(whence yay)" ]]; then
     echo 'yay -S zsh-autosuggestions'
 elif [[ -x "$(whence zyp)" ]]; then
     echo 'zyp in zsh-autosuggestions'
@@ -30,7 +30,7 @@ if [[ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.
     . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 elif [[ -e /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-elif [[ -x "$(whence pacaur)" ]]; then
+elif [[ -x "$(whence yay)" ]]; then
     echo 'yay -S zsh-syntax-highlighting'
 elif [[ -x "$(whence apt)" ]]; then
     echo 'sudo apt install zsh-syntax-highlighting'
