@@ -151,3 +151,5 @@ fi
 #unset __conda_setup
 ## <<< conda initialize <<<
 
+alias start-anaconda="/opt/anaconda/bin/conda init zsh"
+
