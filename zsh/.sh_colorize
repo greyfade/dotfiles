@@ -16,12 +16,19 @@ export LESS_TERMCAP_us=$'\E[1;32m'    # begin underline
 # }}}
 
 # Less needs this switch to pass color sequences and so forth
-export LESS='-R'
+export LESS='-RS'
 
 # GREP has deprecated it and complains constantly if it's set, interfering with aliases
 unset GREP_OPTIONS
 
 setopt prompt_subst
+
+function precmd {
+    print -Pn "\e]0;zsh%L %(1j,%j job%(2j|s|); ,)%~\a"
+}
+function preexec {
+    printf "\033]0;%s\a" "$1"
+}
 
 PROMPT=$'%{\e[0;34m%}%B[%b%{\e[0m%}%{\e[1;32m%}%n%{\e[1;30m%}@%{\e[0m%}%{\e[0;36m%}%m%{\e[0;34m%}%B]―[%(?|%{\e[1;32m%}$|%{\e[1;35m%}$)%{\e[0;34m%}%B]%}%b%{\e[0m%} '
 

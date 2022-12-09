@@ -1,3 +1,4 @@
+# vim ft=zsh
 # ~/.profile: executed by the command interpreter for login shells.
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
@@ -12,7 +13,7 @@
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
+    . "$HOME/.bashrc"
     fi
 fi
 
@@ -29,10 +30,9 @@ export QT_IM_MODULE=ibus
 #export BROWSER="google-chrome-stable"
 export EDITOR="vim"
 
-URLTOOLS_METHOD="python"
+export URLTOOLS_METHOD="python"
 
-
-# vim ft=zsh
+export NIX_PATH="$HOME/.nix-defexpr/channels:$NIX_PATH"
 
 export INTELFPGAOCLSDKROOT="/opt/altera/hld"
 
