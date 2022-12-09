@@ -126,6 +126,12 @@ include "%L"
 
 <Multi_key> <s> <l>     : "ſ"
 
+<Multi_key> <s> <e> <c> : "§" U00A7
+<Multi_key> <p> <a> <r> : "¶" U00B6
+<Multi_key> <r> <e> <f> : "※" U203B
+
+<Multi_key> </> <s>     : "⸮" U2E2E
+
 <Multi_key> <v> <A>     : "𝒜" U1D49C
 <Multi_key> <v> <B>     : "ℬ" U212C
 <Multi_key> <v> <A>     : "𝒞" U1D49E
@@ -136,6 +142,7 @@ include "%L"
 <Multi_key> <d> <e> <g> <c> : "℃" U2103
 <Multi_key> <d> <e> <g> <f> : "℉" U2109
 
+<Multi_key> <d> <o> <t> : "⋅"  U22C5
 <Multi_key> <s> <q> <r> : "√"  U221A
 <Multi_key> <c> <u> <r> : "∛"  U221B
 <Multi_key> <3> <r>     : "∛"  U221B
