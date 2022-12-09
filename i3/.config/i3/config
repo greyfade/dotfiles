@@ -177,6 +177,7 @@ bindsym $mod+Shift+P exec --no-startup-id "$HOME/.local/bin/i3lock.sh"
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
+for_window [class="^.*"] border pixel 0
 
 # default_floating_border pixel 3
 # hide_edge_borders both
@@ -201,3 +202,4 @@ exec --no-startup-id taskset -c 0,23 dropbox
 exec --no-startup-id taskset -c 0,23 megasync
 exec --no-startup-id taskset -c 0,23 picom -b
 exec --no-startup-id taskset -c 0,23 /usr/lib/notify-osd/notify-osd
+exec --no-startup-id taskset -c 0,23 zeal
