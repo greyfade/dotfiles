@@ -1,3 +1,5 @@
+# vim ft=zsh
+
 HISTFILE=~/.histfile
 
 export PAGER="/usr/bin/less"
@@ -24,4 +26,8 @@ if [ -e ~/.local/share/x-tools ]; then
 fi
 #export PATH="/usr/lib/colorgcc/bin:${PATH}"
 
-# vim ft=zsh
+if [ -e ~/.nix-defexpr/channels ]; then
+    for d in "${HOME}/.nix-defexpr/channels/"*/; do
+        export NIX_PATH="${d%/}:${NIX_PATH}"
+    done
+fi
