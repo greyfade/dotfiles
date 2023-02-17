@@ -23,7 +23,7 @@
 	new = blue bold
 	meta = yellow bold
 [merge]
-	tool = nvimdiff
+	tool = vimdiff
 [mergetool "nvimdiff"]
 	cmd = nvim -d \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\" -c '$wincmd c' -c '$wincmd J'
 [mergetool "nvimdiff3"]

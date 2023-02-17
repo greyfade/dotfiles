@@ -24,6 +24,7 @@ if [ -e ~/.local/share/x-tools ]; then
         export PATH="$PATH:${xtool}"
     done
 fi
+export PATH="$HOME/.local/share/ponyup/bin:$PATH"
 #export PATH="/usr/lib/colorgcc/bin:${PATH}"
 
 if [ -e ~/.nix-defexpr/channels ]; then
