@@ -92,6 +92,8 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
         usbmux uucp vcsa wwwrun xfs '_*'
 zstyle '*' single-ignored show
 
+autoload -U +X bashcompinit && bashcompinit && complete -o bashdefault -o default -C qpdf qpdf
+
 source $HOME/.sh_aliases
 source $HOME/.sh_paths
 source $HOME/.sh_functions
