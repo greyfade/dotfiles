@@ -4,7 +4,7 @@ if [[ -e /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substri
 elif [[ -e /usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
     . /usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 else
-    [[ -e ~/.local/share/zsh-history-substring-search ]] || git clone https://github.com/zsh-users/zsh-history-substring-search.git
+    [[ -d ~/.local/share/zsh-history-substring-search ]] || git clone https://github.com/zsh-users/zsh-history-substring-search.git ~/.local/share/zsh-history-substring-search
     . ~/.local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 fi
 #if [[ -e /usr/share/zsh/plugins/zsh-directory-history/zsh-directory-history.zsh ]]; then
@@ -17,16 +17,8 @@ if [[ -e /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; 
 elif [[ -e /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
     . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 else
-    [[ -e ~/.local/share/zsh-autosuggestions ]] || git clone https://github.com/zsh-users/zsh-autosuggestions.git
+    [[ -d ~/.local/share/zsh-autosuggestions ]] || git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.local/share/zsh-autosuggestions
     . ~/.local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-if [[ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-    . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-elif [[ -e /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-    . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-else
-    [[ -e ~/.local/share/zsh-syntax-highlighting ]] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-    . ~/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 if [[ -x "$(whence direnv)" ]]; then
     eval "$(direnv hook zsh)"
@@ -82,6 +74,17 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 zstyle '*' single-ignored show
 
 autoload -U +X bashcompinit && bashcompinit && complete -o bashdefault -o default -C qpdf qpdf
+
+# {{{ zsh-syntax-highlighting needs to be loaded after compinit and zle widgets
+if [[ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [[ -e /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+else
+    [[ -d ~/.local/share/zsh-syntax-highlighting ]] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.local/share/zsh-syntax-highlighting
+    . ~/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+# }}}
 
 source $HOME/.sh_aliases
 source $HOME/.sh_paths
