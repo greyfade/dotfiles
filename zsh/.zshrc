@@ -3,12 +3,9 @@ if [[ -e /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substri
     . /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 elif [[ -e /usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
     . /usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-elif [[ -x "$(whence yay)" ]]; then
-    echo 'yay -S zsh-history-substring-search'
-elif [[ -x "$(whence zyp)" ]]; then
-    echo 'zyp in zsh-history-substring-search'
 else
-    echo "zsh-history-substring-search not found"
+    [[ -e ~/.local/share/zsh-history-substring-search ]] || git clone https://github.com/zsh-users/zsh-history-substring-search.git
+    . ~/.local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 fi
 #if [[ -e /usr/share/zsh/plugins/zsh-directory-history/zsh-directory-history.zsh ]]; then
     #. /usr/share/zsh/plugins/zsh-directory-history/zsh-directory-history.zsh
@@ -19,25 +16,17 @@ if [[ -e /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; 
     . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 elif [[ -e /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
     . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-elif [[ -x "$(whence yay)" ]]; then
-    echo 'yay -S zsh-autosuggestions'
-elif [[ -x "$(whence zyp)" ]]; then
-    echo 'zyp in zsh-autosuggestions'
 else
-    echo "zsh-autosuggestions not found"
+    [[ -e ~/.local/share/zsh-autosuggestions ]] || git clone https://github.com/zsh-users/zsh-autosuggestions.git
+    . ~/.local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 if [[ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 elif [[ -e /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-elif [[ -x "$(whence yay)" ]]; then
-    echo 'yay -S zsh-syntax-highlighting'
-elif [[ -x "$(whence apt)" ]]; then
-    echo 'sudo apt install zsh-syntax-highlighting'
-elif [[ -x "$(whence zyp)" ]]; then
-    echo 'zyp in zsh-syntax-highlighting'
 else
-    echo "zsh-syntax-highlighting not found"
+    [[ -e ~/.local/share/zsh-syntax-highlighting ]] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+    . ~/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 if [[ -x "$(whence direnv)" ]]; then
     eval "$(direnv hook zsh)"
