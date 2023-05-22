@@ -125,10 +125,10 @@ include "%L"
 <Multi_key> <K> <A> <I> : "Ϗ"  U03CF
 
 <Multi_key> <s> <l>     : "ſ"
-<multi_key> <w> <y>     : "ƿ"  U01BF
-<multi_key> <W> <Y>     : "Ƿ"  U01F7
-<multi_key> <y> <o>     : "ȝ"  U021D
-<multi_key> <Y> <O>     : "Ȝ"  U021C
+<Multi_key> <w> <y>     : "ƿ"  U01BF
+<Multi_key> <W> <Y>     : "Ƿ"  U01F7
+<Multi_key> <y> <o>     : "ȝ"  U021D
+<Multi_key> <Y> <O>     : "Ȝ"  U021C
 
 <Multi_key> <s> <e> <c> : "§" U00A7
 <Multi_key> <p> <a> <r> : "¶" U00B6
@@ -151,6 +151,9 @@ include "%L"
 <Multi_key> <c> <u> <r> : "∛"  U221B
 <Multi_key> <3> <r>     : "∛"  U221B
 <Multi_key> <4> <r>     : "∜"  U221C
+<Multi_key> <q> <e> <d> : "■"  U25A0
+<Multi_key> <t> <h> <f> : "∴"  U2234
+<Multi_key> <d> <i> <v> : "|"  U007C
 
 <Multi_key> <c> <o> <m> <p> : "∘" U2218  # Function composition
 <Multi_key> <l> <a>     : "λ"  U03BB     # Lambda notation
