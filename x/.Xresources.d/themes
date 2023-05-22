@@ -30,8 +30,8 @@ Zutty.color3:  #ffcc56
 Zutty.color11: #fdf7b0
 
 ! blue/light blue
-*color4:    rgb:5f/95/ce
-Zutty.color4:  #5f95ce
+*color4:    rgb:36/3e/7a
+Zutty.color4:  #363e7a
 *color12:   rgb:9e/db/f8
 Zutty.color12: #9edbf8
 
