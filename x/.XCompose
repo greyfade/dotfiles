@@ -1,4 +1,4 @@
-include "%L"
+include "%S/en_US.UTF-8/Compose"
 
 <Multi_key> <g> <a>     : "α"  U03B1
 <Multi_key> <g> <A>     : "Α"  U0391
@@ -36,8 +36,8 @@ include "%L"
 <Multi_key> <g> <I>     : "Ι"
 <Multi_key> <G> <i>     : "Ι"
 <Multi_key> <G> <I>     : "Ι"
-<Multi_key> <g> <:> <i> : "ϊ"  U03CA
-<Multi_key> <g> <"> <i> : "ϊ"  U03CA
+<Multi_key> <g> <colon> <i> : "ϊ"  U03CA
+<Multi_key> <g> <quotedbl> <i> : "ϊ"  U03CA
 <Multi_key> <g> <j>     : "υ"
 <Multi_key> <g> <J>     : "Υ"
 <Multi_key> <G> <j>     : "Υ"
@@ -58,7 +58,7 @@ include "%L"
 <Multi_key> <g> <O>     : "Ο"
 <Multi_key> <G> <o>     : "Ο"
 <Multi_key> <G> <O>     : "Ο"
-<Multi_key> <g> <'> <o> : "ό"  U03CC
+<Multi_key> <g> <apostrophe> <o> : "ό"  U03CC
 <Multi_key> <g> <p>     : "ψ"  U03C8
 <Multi_key> <g> <P>     : "Ψ"
 <Multi_key> <G> <p>     : "Ψ"
@@ -87,9 +87,9 @@ include "%L"
 <Multi_key> <g> <U>     : "Υ"
 <Multi_key> <G> <u>     : "Υ"
 <Multi_key> <G> <U>     : "Υ"
-<Multi_key> <g> <:> <u> : "ϋ"  U03CB
-<Multi_key> <g> <"> <u> : "ϋ"  U03CB
-<Multi_key> <g> <'> <u> : "ύ"  U03CD
+<Multi_key> <g> <colon> <u> : "ϋ"  U03CB
+<Multi_key> <g> <quotedbl> <u> : "ϋ"  U03CB
+<Multi_key> <g> <apostrophe> <u> : "ύ"  U03CD
 <Multi_key> <g> <v>     : "ν"  U03BD
 <Multi_key> <g> <V>     : "Ν"
 <Multi_key> <G> <v>     : "Ν"
@@ -98,7 +98,7 @@ include "%L"
 <Multi_key> <g> <W>     : "Ω"
 <Multi_key> <G> <w>     : "Ω"
 <Multi_key> <G> <W>     : "Ω"
-<Multi_key> <g> <'> <w> : "ώ"  U03CE
+<Multi_key> <g> <apostrophe> <w> : "ώ"  U03CE
 <Multi_key> <g> <x>     : "χ"  U03C7
 <Multi_key> <g> <X>     : "Χ"
 <Multi_key> <G> <x>     : "Χ"
@@ -136,14 +136,14 @@ include "%L"
 <Multi_key> <p> <a> <r> : "¶" U00B6
 <Multi_key> <r> <e> <f> : "※" U203B
 
-<Multi_key> </> <s>     : "⸮" U2E2E
+<Multi_key> <slash> <s>     : "⸮" U2E2E
 
 <Multi_key> <v> <A>     : "𝒜" U1D49C
 <Multi_key> <v> <B>     : "ℬ" U212C
 <Multi_key> <v> <C>     : "𝒞" U1D49E
 
-<Multi_key> <h> <->     : "ℏ" U210F
-<Multi_key> <-> <h>     : "ℏ" U210F
+<Multi_key> <h> <minus>     : "ℏ" U210F
+<Multi_key> <minus> <h>     : "ℏ" U210F
 
 <Multi_key> <d> <e> <g> <c> : "℃" U2103
 <Multi_key> <d> <e> <g> <f> : "℉" U2109
@@ -156,6 +156,15 @@ include "%L"
 <Multi_key> <q> <e> <d> : "■"  U25A0
 <Multi_key> <t> <h> <f> : "∴"  U2234
 <Multi_key> <d> <i> <v> : "|"  U007C
+<Multi_key> <n> <o> <t> : "¬"  U00AC
+<Multi_key> <comma> <minus>             : "¬"   notsign # NOT SIGN
+<Multi_key> <minus> <comma>             : "¬"   notsign # NOT SIGN
+
+<Multi_key> <backslash> <o> <slash>     : "🙌"  U1F64C # PERSON RAISING BOTH HANDS IN CELEBRATION
+<Multi_key> <p> <o> <o>                 : "💩"  U1F4A9 # PILE OF POO
+<Multi_key> <F> <U>                     : "🖕"  U1F595 # REVERSED HAND WITH MIDDLE FINGER EXTENDED
+<Multi_key> <L> <L> <A> <P>             : "🖖"  U1F596 # RAISED HAND WITH PART BETWEEN MIDDLE AND RING FINGERS
+
 
 <Multi_key> <c> <o> <m> <p> : "∘" U2218  # Function composition
 <Multi_key> <l> <a>     : "λ"  U03BB     # Lambda notation
