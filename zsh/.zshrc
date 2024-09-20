@@ -129,6 +129,13 @@ then
     cat NEXT_TO_RUN
 fi
 
+command -v pyenv >/dev/null && eval "$(pyenv virtualenv-init -)"
+
+
+if [[ -e ~/.local/site-local.zshrc ]]
+then
+    source ~/.local/site-local.zshrc
+fi
 
 ## >>> conda initialize >>>
 ## !! Contents within this block are managed by 'conda init' !!

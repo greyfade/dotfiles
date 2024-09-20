@@ -27,6 +27,11 @@ fi
 if [ -d "$HOME/.emacs.d/bin" ] ; then
     export PATH="$PATH:$HOME/.emacs.d/bin"
 fi
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 #export GTK_IM_MODULE=ibus
 #export XMODIFIERS=@im=ibus
 #export QT_IM_MODULE=ibus
