@@ -1,0 +1,3 @@
+#!/bin/sh
+
+df -h | awk '/\/$/ || /\/home/ { print $6 ":" $4 }' | tr '\n' ' '
