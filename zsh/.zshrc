@@ -154,3 +154,8 @@ fi
 
 alias start-anaconda="/opt/anaconda/bin/conda init zsh"
 
+
+if [[ -e ~/.nix-profile/etc/profile.d/nix.sh ]]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+if [[ -e ~/.toolbox/bin ]]; then
+    export PATH=$PATH:$HOME/.toolbox/bin
+fi

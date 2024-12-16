@@ -32,10 +32,6 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-#export GTK_IM_MODULE=ibus
-#export XMODIFIERS=@im=ibus
-#export QT_IM_MODULE=ibus
-
 #export BROWSER="google-chrome-stable"
 export EDITOR="vim"
 
@@ -46,3 +42,5 @@ export NIX_PATH="$HOME/.nix-defexpr/channels:$NIX_PATH"
 export INTELFPGAOCLSDKROOT="/opt/altera/hld"
 
 export QSYS_ROOTDIR="/opt/altera/quartus/sopc_builder/bin"
+
+if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
