@@ -124,7 +124,9 @@ include "%L"
 <Multi_key> <k> <a> <i> : "ϗ"  U03D7
 <Multi_key> <K> <A> <I> : "Ϗ"  U03CF
 
-<Multi_key> <s> <l>     : "ſ"
+<Multi_key> <T> <H>     : "Þ"  U00DE
+<Multi_key> <t> <h>     : "þ"  U00FE
+<Multi_key> <s> <l>     : "ſ"  U017F
 <Multi_key> <w> <y>     : "ƿ"  U01BF
 <Multi_key> <W> <Y>     : "Ƿ"  U01F7
 <Multi_key> <y> <o>     : "ȝ"  U021D
