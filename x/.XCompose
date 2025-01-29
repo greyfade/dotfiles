@@ -131,6 +131,8 @@ include "%S/en_US.UTF-8/Compose"
 <Multi_key> <W> <Y>     : "Ƿ"  U01F7
 <Multi_key> <y> <o>     : "ȝ"  U021D
 <Multi_key> <Y> <O>     : "Ȝ"  U021C
+<Multi_key> <t> <h>     : "þ"  U00FE
+<Multi_key> <T> <H>     : "Þ"  U00DE
 
 <Multi_key> <s> <e> <c> : "§" U00A7
 <Multi_key> <p> <a> <r> : "¶" U00B6
@@ -147,6 +149,7 @@ include "%S/en_US.UTF-8/Compose"
 
 <Multi_key> <d> <e> <g> <c> : "℃" U2103
 <Multi_key> <d> <e> <g> <f> : "℉" U2109
+<Multi_key> <d> <e> <g> <k> : "K" U212A
 
 <Multi_key> <d> <o> <t> : "⋅"  U22C5
 <Multi_key> <s> <q> <r> : "√"  U221A
@@ -154,7 +157,8 @@ include "%S/en_US.UTF-8/Compose"
 <Multi_key> <3> <r>     : "∛"  U221B
 <Multi_key> <4> <r>     : "∜"  U221C
 <Multi_key> <q> <e> <d> : "■"  U25A0
-<Multi_key> <t> <h> <f> : "∴"  U2234
+<Multi_key> <t> <h> <f> : "∴"  U2234  # Therefore
+<Multi_key> <b> <c> <z> : "∵"  U2234  # Because
 <Multi_key> <d> <i> <v> : "|"  U007C
 <Multi_key> <n> <o> <t> : "¬"  U00AC
 <Multi_key> <comma> <minus>             : "¬"   notsign # NOT SIGN
@@ -168,3 +172,28 @@ include "%S/en_US.UTF-8/Compose"
 
 <Multi_key> <c> <o> <m> <p> : "∘" U2218  # Function composition
 <Multi_key> <l> <a>     : "λ"  U03BB     # Lambda notation
+
+<Multi_key> <s> <u> <p> <s> : "⊃" U2283  # Superset
+
+<Multi_key> <less> <equal> <greater> : "⇔" U21D4 # double-stroke if-and-only-if
+<Multi_key> <less> <minus> <greater> : "↔" U2194 # if-and-only-if
+<Multi_key> <equal> <equal> : "≡" U2261 # if and only if; strict equivalence
+
+<Multi_key> <l> <a> <n> <d> : "∧" U2227  # logical and
+<Multi_key> <l> <o> <r>     : "∨" U2228  # logical or
+<Multi_key> <l> <x> <o> <r> : "⊕" U2295  # logical xor
+<Multi_key> <underscore> <l> <o> <r> : "⊻" U22BB  # logical xor
+<Multi_key> <equal> <slash> <equal> : "≢" U2262  # strict not equivalent
+
+<Multi_key> <t> <r> <u> <e> : "⊤" U22A4 # True
+<Multi_key> <f> <a> <l> <s> : "⊥" U22A5 # False
+<Multi_key> <f> <o> <r> <a> : "∀" U2200 # For all
+<Multi_key> <e> <x> <i> <s> : "∃" U2203 # There exists
+<Multi_key> <d> <o> <m> <a> : "𝐷" U1D53B # Domain
+<Multi_key> <e> <n> <t> <a> : "⊢" U22A2 # syntactically entails
+<Multi_key> <e> <n> <t> <s> : "⊨" U22A8 # semantically entails
+<Multi_key> <e> <n> <t> <a> <slash> : "⊬" U22AC # syntactically does not entail
+<Multi_key> <e> <n> <t> <s> <slash> : "⊭" U22AD # semantically does not entail
+<Multi_key> <n> <e> <e> <d> : "□" U25A1 # Necessary
+<Multi_key> <p> <o> <s> <s> : "◇" U25C7 # Possible
+<Multi_key> <colon> <equal> : "≔" U2254 # := - semantic assignment; definition

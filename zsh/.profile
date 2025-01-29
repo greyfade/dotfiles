@@ -44,3 +44,4 @@ export INTELFPGAOCLSDKROOT="/opt/altera/hld"
 export QSYS_ROOTDIR="/opt/altera/quartus/sopc_builder/bin"
 
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+export VCPKG_ROOT=$HOME/.local/share/vcpkg

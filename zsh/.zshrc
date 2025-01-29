@@ -137,6 +137,11 @@ then
     source ~/.local/site-local.zshrc
 fi
 
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+
 ## >>> conda initialize >>>
 ## !! Contents within this block are managed by 'conda init' !!
 #__conda_setup="$('/opt/anaconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"

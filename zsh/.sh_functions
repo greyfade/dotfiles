@@ -193,4 +193,17 @@ cp-lower() {
     echo $to
 }
 
+# Get local weather and present it nicely
+weather() {
+  # We require 'curl' so check for it
+  if ! command -v curl &>/dev/null; then
+    printf "%s\n" "[ERROR] weather: This command requires 'curl', please install it."
+    return 1
+  fi
+
+  # If no arg is given, default to Bellingham, WA
+  curl -m 10 "http://wttr.in/${*}" 2>/dev/null || printf "%s\n" "[ERROR] weather: Could not connect to weather service."
+}
+
+
 # vim:ft=zsh
