@@ -97,8 +97,8 @@ setopt correct nocorrect_all
 if [ -z "$HISTFILE" ]; then
     HISTFILE=$HOME/.zsh_history
 fi
-HISTSIZE=30000
-SAVEHIST=100000
+HISTSIZE=40000
+SAVEHIST=30000
 setopt append_history
 setopt extended_history
 setopt hist_expire_dups_first
@@ -136,11 +136,6 @@ if [[ -e ~/.local/site-local.zshrc ]]
 then
     source ~/.local/site-local.zshrc
 fi
-
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
 
 ## >>> conda initialize >>>
 ## !! Contents within this block are managed by 'conda init' !!

@@ -28,16 +28,10 @@ if [ -d "$HOME/.emacs.d/bin" ] ; then
     export PATH="$PATH:$HOME/.emacs.d/bin"
 fi
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
 #export BROWSER="google-chrome-stable"
 export EDITOR="vim"
 
 export URLTOOLS_METHOD="python"
-
-export NIX_PATH="$HOME/.nix-defexpr/channels:$NIX_PATH"
 
 export INTELFPGAOCLSDKROOT="/opt/altera/hld"
 
